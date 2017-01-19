@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author your details
+ * @author Dominic Lewis
  */
 
 /**
@@ -32,7 +32,7 @@ public class ZombieBot implements world.ZombieBot {
      */ 
     @Override
     public boolean shouldQuit() {
-        return true;
+        return false; //FIGURE THIS OUT
     }  
     
     /**
