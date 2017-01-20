@@ -1,5 +1,7 @@
 /*
- * Author: Add group details here
+ * Author: Dominic Lewis  
+          - William Blackie
+          - Jake Davies 
  * Desc: This file contains the heart of dynamic game play for Zombies. 
  *       you need to implement each of the methods, as per the game play,
  *       adding support for processing commands comming from the client.
