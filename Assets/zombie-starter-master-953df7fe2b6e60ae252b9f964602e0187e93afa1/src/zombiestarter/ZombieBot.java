@@ -6,7 +6,6 @@
  */
 package zombiestarter;
 
-import java.util.Scanner; 
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +20,6 @@ import java.util.List;
  */
 public class ZombieBot implements world.ZombieBot {
     
-    //Create a new scanner reading from the system input 
-    Scanner scan = new Scanner(System.in);
-    
     private World world; 
     
     ZombieBot(World world) {
@@ -32,19 +28,11 @@ public class ZombieBot implements world.ZombieBot {
     
     /**
      * should game quit 
-     * @param option
      * @return return true if exit program, otherwise false 
      */ 
-    public boolean shouldQuit(int option) {
-       //Quit on 1
-        if (option ==1 )
-        {
-            return true;
-        }
-        //don't quit
-        else{
-         return false; 
-        }
+    @Override
+    public boolean shouldQuit() {
+        return false;
     }  
     
     /**
@@ -117,7 +105,7 @@ public class ZombieBot implements world.ZombieBot {
                 result.add("handle timeexpired command");
                 break;
             case "quit":
-                  shouldQuit(1);
+                result.add("handle quit command");
                 break;
             case "inventory":
                 result.add("handle inventory command");
