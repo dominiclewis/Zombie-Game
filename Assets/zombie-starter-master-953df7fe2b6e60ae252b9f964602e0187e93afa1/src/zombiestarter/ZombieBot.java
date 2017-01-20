@@ -34,7 +34,7 @@ public class ZombieBot implements world.ZombieBot {
      */ 
     @Override
     public boolean shouldQuit() {
-        return false;
+       return true;
     }  
     
     /**
@@ -60,7 +60,7 @@ public class ZombieBot implements world.ZombieBot {
      * and goes back into state of not enable.
      * @return true if enable timer, otherwise false
      */
-    public boolean enableTimer()  {
+    public boolean enableTimer()  { 
         return false;
     }
 
@@ -107,7 +107,7 @@ public class ZombieBot implements world.ZombieBot {
                 result.add("handle timeexpired command");
                 break;
             case "quit":
-                result.add("handle quit command");
+                result.add("handle look command");
                 break;
             case "inventory":
                 result.add("handle inventory command");
