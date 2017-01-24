@@ -34,7 +34,15 @@ public class ZombieBot implements world.ZombieBot {
      */ 
     @Override
     public boolean shouldQuit() {
-       return false;
+      
+        
+       if(world.getQuit() == true)
+       {
+           return true; 
+       } 
+       else{ 
+        return false;
+       }
     }  
     
     /**
@@ -107,7 +115,8 @@ public class ZombieBot implements world.ZombieBot {
                 result.add("handle timeexpired command");
                 break;
             case "quit":
-                result.add("handle look command");
+                //result.add("handle quit command");
+                 world.setQuit(true);
                 break;
             case "inventory":
                 result.add("handle inventory command");
