@@ -34,7 +34,7 @@ public class ZombieBot implements world.ZombieBot {
      */ 
     @Override
     public boolean shouldQuit() {
-       return true;
+       return false;
     }  
     
     /**
