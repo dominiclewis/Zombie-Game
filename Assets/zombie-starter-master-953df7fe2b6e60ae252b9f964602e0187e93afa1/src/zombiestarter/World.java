@@ -11,6 +11,7 @@ public class World{   //ACTUAL CLASS, anything can look at these variables howev
     
     //Constructor (THIS IS THE INFO WE USE TO CONSTRUCT THE CLASS * CALLTIME)
 World(String info){
+    //INFO is passed in 
     
     this.info = info;  //this forces class info as opposed to passed one    
  
@@ -21,7 +22,7 @@ World(String info){
         //THIS means we're addressing the one in the class ddeclaration 
         this.quit = quit;
     }
-    //Returns quit result 
+    //Returns quitresult  
     public boolean getQuit()
     {
         return quit; 
