@@ -1,10 +1,12 @@
 /*
- * Author: Dominic Lewis  
+ * Author: 
+          -Dominic Lewis  
           - William Blackie
           - Jake Davies 
  * Desc: This file contains the heart of dynamic game play for Zombies. 
  *       you need to implement each of the methods, as per the game play,
  *       adding support for processing commands comming from the client.
+    Testing URL: http://www.cems.uwe.ac.uk/~br-gaster/courses/2016-2017/OOSD1/
  */
 package zombiestarter;
 
@@ -33,13 +35,14 @@ public class ZombieBot implements world.ZombieBot {
      * @return return true if exit program, otherwise false 
      */ 
     @Override
+            //This checks that the world quit attribute is set to true, if so it returns true
     public boolean shouldQuit() {
-      
-        
+  
        if(world.getQuit() == true)
        {
            return true; 
        } 
+       //Quit hasn't been entered yet so do not quit
        else{ 
         return false;
        }
@@ -115,8 +118,8 @@ public class ZombieBot implements world.ZombieBot {
                 result.add("handle timeexpired command");
                 break;
             case "quit":
-                //result.add("handle quit command");
-                 world.setQuit(true);
+                //This is where we alter the world quit attribute with the setter
+                 world.setQuit(true); 
                 break;
             case "inventory":
                 result.add("handle inventory command");
