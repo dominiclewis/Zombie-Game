@@ -25,7 +25,7 @@ import java.util.List;
 public class ZombieBot implements world.ZombieBot {
     
     private World world; 
-    
+
     ZombieBot(World world) {
       this.world = world; 
     }
@@ -54,7 +54,7 @@ public class ZombieBot implements world.ZombieBot {
      */
     @Override
     public String begin() {
-        return "this is the message that gets displayed when game begins";
+        return world.getStartString();
     }
     
     /**
@@ -122,7 +122,7 @@ public class ZombieBot implements world.ZombieBot {
                  world.setQuit(true); 
                 break;
             case "inventory":
-                result.add(world.getDisplayInventory());
+                               result.add(world.getDisplayInventory());
                 break;
             case "blank":
                 result.add("I beg your pardon?");
