@@ -34,7 +34,7 @@ public class ZombieStarter {
              
              WorldLoader w1 = new WorldLoader();  //Create new instance of the WorldLoader class *Load the Json file 
               
-             World world = new World(w1.getInfo()); //Inside the worldLoader class to access the getInfo method
+             World world = new World(w1.getInfo(),w1.getInventoryHtml()); //Inside the worldLoader class to access the getInfo method
              
             // create an instane of our server to commnicate with the
             // web frontend.

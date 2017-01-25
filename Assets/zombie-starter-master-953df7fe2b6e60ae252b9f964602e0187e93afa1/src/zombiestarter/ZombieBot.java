@@ -122,7 +122,7 @@ public class ZombieBot implements world.ZombieBot {
                  world.setQuit(true); 
                 break;
             case "inventory":
-                result.add("handle inventory command");
+                result.add(world.getDisplayInventory());
                 break;
             case "blank":
                 result.add("I beg your pardon?");
