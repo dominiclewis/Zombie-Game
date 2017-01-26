@@ -54,7 +54,7 @@ public class ZombieBot implements world.ZombieBot {
      */
     @Override
     public String begin() {
-        return world.getStartString();
+        return world.getStartStringHTML(); 
     }
     
     /**

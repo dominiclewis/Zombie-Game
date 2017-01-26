@@ -4,22 +4,23 @@ package zombiestarter;
 Author: Dominic Lewis
 */
 
-public class World{   //ACTUAL CLASS, anything can look at these variables however we should use getters and setters
-    //Attributes
+public class World{   //Private Variables Public class so anything can use the getters and setters with private variables
+    
     private String info;  //Stores the world info string
     private boolean quit;  //Stores whether or not we should quit
     private String displayInventory; //HTML used for formatting the inventory?
-    private String startString; //String to be displayed to the user at the start of the game
+    private String startStringHTML; //String to be displayed to the user at the start of the game
+    private String start; //String that is used for the start room I think 
     //Constructor (THIS IS THE INFO WE USE TO CONSTRUCT THE CLASS * CALLTIME)
-World(String info, String displayInventory, String startString){
+World(String info, String displayInventory, String startString,String start){
     
     //this.info refers to the class attribute while = refers to the paramater
     //Basically this says the attribute = whatever is passed in through the paramater
     
-    this.startString = startString; //link the constructor to the attribute;
+    this.startStringHTML = startString; //link the constructor to the attribute;
     this.info = info;     
     this.displayInventory = displayInventory; 
-    
+    this.start = start; 
 }    
 
 //Getter for displayInventory
@@ -42,10 +43,16 @@ public String getDisplayInventory(){
     public String getInfo() {
         return info;
     }
-   //Getter for start string 
-    public String getStartString()
+   //Getter for start string HTML
+    public String getStartStringHTML()
     {
-        return startString;
+        return startStringHTML;
     } 
+    
+    //Getter for Start Room
+    public String getStart(){
+        return start; 
+        
+    }
            
 }
