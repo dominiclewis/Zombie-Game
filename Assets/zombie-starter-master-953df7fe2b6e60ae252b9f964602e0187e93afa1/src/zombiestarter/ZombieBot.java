@@ -10,8 +10,7 @@
  */
 package zombiestarter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*; //imports all classes
 
 /**
  *
@@ -84,6 +83,23 @@ public class ZombieBot implements world.ZombieBot {
         return false;
     }
     
+    public boolean shouldKill (){ //both items and timer needed to be createded to finish
+        if (world.getKill() == true){//) & ( world.getZombieCount() > 0) ){//  & (daisy | chainsaw)
+                
+            world.setZombieCount();
+            //decrement daisy or chainsaw 
+            System.out.println("You killed the zombie");
+            
+           if (world.getZombieCount()  == 0){ //if all zombies are dead
+//                if(enableTimer()= true ){
+//              disableTimer(true); // timer needs to be implmeneted 
+        }
+
+    }
+        return false;
+    }
+        
+        
     /**
      * process player commands
      * @param cmd to be processed
@@ -109,7 +125,8 @@ public class ZombieBot implements world.ZombieBot {
                 result.add("handle pickup command");
                 break;
             case "kill":
-                result.add("handle kill command");
+                   //This is where we alter the world kill attribute with the setter 
+               world.setKill(true);
                 break;
             case "drop":
                 result.add("handle drop command");
