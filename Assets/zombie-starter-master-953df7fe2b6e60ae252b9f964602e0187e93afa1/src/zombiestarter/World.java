@@ -14,6 +14,7 @@ public class World{   //Private Variables Public class so anything can use the g
     //WRoom
     private int zombieCount; //int contains zombies in current room
     private boolean kill;//stores wether we should kill
+    private boolean timer; //stores if timer has been set
     //Constructor (THIS IS THE INFO WE USE TO CONSTRUCT THE CLASS * CALLTIME)
 World(String info, String displayInventory, String startString,String start){
     
@@ -26,8 +27,9 @@ World(String info, String displayInventory, String startString,String start){
     this.displayInventory = displayInventory; 
     this.start = start; 
     
+    
     //WRoom
-    //this.zombieCount = zombieCount;
+    this.zombieCount = zombieCount;
 }    
 
 
@@ -63,7 +65,7 @@ public String getDisplayInventory(){
     }
         //getter for zombie
         public int getZombieCount(){
-            zombieCount++; //just for testing sake
+             //just for testing sake
             return zombieCount;
         }
         
@@ -82,6 +84,13 @@ public String getDisplayInventory(){
         return kill; 
     }
         
+        public void setTimer(boolean timer){
+            this.timer = timer;
+        }
+        
+     public boolean getTimer() {
+        return timer; 
+    }
         
            
 }
