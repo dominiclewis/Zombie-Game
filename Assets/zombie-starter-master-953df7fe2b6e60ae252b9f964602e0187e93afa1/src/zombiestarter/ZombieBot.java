@@ -10,8 +10,7 @@
  */
 package zombiestarter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*; //imports all classes
 
 /**
  *
@@ -72,7 +71,10 @@ public class ZombieBot implements world.ZombieBot {
      * @return true if enable timer, otherwise false
      */
     public boolean enableTimer()  { 
-        return false;
+        if(world.getZombieCount() > 0){
+        return true;
+        }
+       return false;
     }
 
     /**
@@ -81,9 +83,32 @@ public class ZombieBot implements world.ZombieBot {
      * @return
      */
     public boolean disableTimer() {
-        return false;
+        if(world.getZombieCount() > 0){
+            return false;
+        }
+        return true;
     }
     
+    public boolean shouldKill() { 
+        boolean flag = false;
+        
+        if ((world.getKill() == true) & (world.getZombieCount() > 0)) {//  & (daisy | chainsaw)
+
+            world.setZombieCount();
+            //decrement daisy or chainsaw 
+          //print you killed a zombie somehow
+            if (world.getZombieCount() == 0) { //if all zombies are dead
+                
+                if (enableTimer() == true) {//and the timer is enabled
+                    
+                    disableTimer();
+                    flag = true;
+                }
+            }
+        }
+        return flag;
+    }
+        
     /**
      * process player commands
      * @param cmd to be processed
@@ -109,13 +134,17 @@ public class ZombieBot implements world.ZombieBot {
                 result.add("handle pickup command");
                 break;
             case "kill":
-                result.add("handle kill command");
+                   //This is where we alter the world kill attribute with the setter 
+               world.setKill(true);
+               result.add("you killed a zombie");
                 break;
             case "drop":
                 result.add("handle drop command");
                 break;
             case "timerexpired":
-                result.add("handle timeexpired command");
+                //This is where we alter the world quit attribute with the setter 
+                result.add("You are dead");// this isn't displayed for some reason
+                world.setQuit(true);
                 break;
             case "quit":
                 //This is where we alter the world quit attribute with the setter
