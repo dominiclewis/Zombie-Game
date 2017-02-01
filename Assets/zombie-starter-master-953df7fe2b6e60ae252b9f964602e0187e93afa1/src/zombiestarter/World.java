@@ -11,27 +11,17 @@ public class World{   //Private Variables Public class so anything can use the g
     private String displayInventory; //HTML used for formatting the inventory?
     private String startStringHTML; //String to be displayed to the user at the start of the game
     private String start; //String that is used for the start room I think 
-    //WRoom
-    private int zombieCount; //int contains zombies in current room
-    private boolean kill;//stores wether we should kill
-    private boolean timer; //stores if timer has been set
     //Constructor (THIS IS THE INFO WE USE TO CONSTRUCT THE CLASS * CALLTIME)
 World(String info, String displayInventory, String startString,String start){
     
     //this.info refers to the class attribute while = refers to the paramater
     //Basically this says the attribute = whatever is passed in through the paramater
     
-    //
     this.startStringHTML = startString; //link the constructor to the attribute;
     this.info = info;     
     this.displayInventory = displayInventory; 
     this.start = start; 
-    
-    
-    //WRoom
-    this.zombieCount = zombieCount;
 }    
-
 
 //Getter for displayInventory
 public String getDisplayInventory(){
@@ -62,35 +52,7 @@ public String getDisplayInventory(){
     //Getter for Start Room
     public String getStart(){
         return start; 
+        
     }
-        //getter for zombie
-        public int getZombieCount(){
-             //just for testing sake
-            return zombieCount;
-        }
-        
-        public int setZombieCount(){
-            zombieCount--; // each kill comand only kills one zombie
-            return zombieCount;
-        }
-        
-        public void setKill(boolean kill) {
-        //THIS means we're addressing the one in the class ddeclaration 
-        this.kill = kill;
-    }
-        
-        public boolean getKill()
-    {
-        return kill; 
-    }
-        
-        public void setTimer(boolean timer){
-            this.timer = timer;
-        }
-        
-     public boolean getTimer() {
-        return timer; 
-    }
-        
            
 }
