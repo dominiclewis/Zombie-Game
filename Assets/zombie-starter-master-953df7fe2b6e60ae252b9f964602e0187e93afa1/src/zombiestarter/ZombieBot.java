@@ -25,9 +25,10 @@ import java.util.List;
 public class ZombieBot implements world.ZombieBot {
     
     private World world; 
-
+  
     ZombieBot(World world) {
       this.world = world; 
+      
     }
     
     /**
@@ -83,7 +84,8 @@ public class ZombieBot implements world.ZombieBot {
     public boolean disableTimer() {
         return false;
     }
-    
+    //output the list from the item class
+   
     /**
      * process player commands
      * @param cmd to be processed
@@ -122,13 +124,17 @@ public class ZombieBot implements world.ZombieBot {
                  world.setQuit(true); 
                 break;
             case "inventory":
-                               result.add(world.getDisplayInventory());
+                result.add(world.getDisplayInventory());
                 break;
             case "blank":
                 result.add("I beg your pardon?");
                 break;
             case "":
                 break;
+                //DELETE THIS "test" 
+            case "test":
+       
+                break; 
             default:
                 result.add("<b>That's not a verb I recognise.</b>");
         }
