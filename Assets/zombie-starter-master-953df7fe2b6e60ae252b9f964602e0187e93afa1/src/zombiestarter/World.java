@@ -38,7 +38,7 @@ public String getDisplayInventory(){
     {
         return quit; 
     }
-    
+    //
     //Right click inside the class, insert code, getter 
     public String getInfo() {
         return info;
