@@ -47,7 +47,6 @@ public class ZombieStarter {
         //Pass in the List<> from WorldLoader  
      //  Item.displayItemsInRoom(w1.getItems());
        
-        System.out.println("\n");
         
         // lets display all the rooms contained in the world
           

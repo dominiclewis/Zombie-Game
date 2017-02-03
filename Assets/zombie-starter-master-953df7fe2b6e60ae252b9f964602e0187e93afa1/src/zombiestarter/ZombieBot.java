@@ -117,10 +117,6 @@ public class ZombieBot implements world.ZombieBot {
        return world.getCurrentRoom();
     }
     
-   public void look(){
-     //Cycle through all the rooms till we find the current room and output it
-     world.displayRooms(whatRoomAreWeIn());
-   }
     /**
      * process player commands
      * @param cmd to be processed
@@ -136,8 +132,8 @@ public class ZombieBot implements world.ZombieBot {
             case "info":
                 result.add(world.getInfo());
                 break;
-            case "look":
-                look();
+            case "look":                
+                result.add(world.displayRooms(whatRoomAreWeIn() ) );
                 break;
             case "move":
                 result.add("handle move command");
@@ -168,7 +164,7 @@ public class ZombieBot implements world.ZombieBot {
                 break;
                 //DELETE THIS "test" 
             case "test":
-                 result.add(world.getStart() );
+                result.add("I just came to say hello Hello");
                 break; 
             default:
                 result.add("<b>That's not a verb I recognise.</b>");

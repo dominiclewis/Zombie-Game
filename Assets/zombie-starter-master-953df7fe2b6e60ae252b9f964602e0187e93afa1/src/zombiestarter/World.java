@@ -84,8 +84,8 @@ public String getDisplayInventory(){
         this.currentRoom = currentRoom;
     }
     //Methods which output the ting
-     public void displayRooms(String roomWeWant) {
-        System.out.println("----------------------------------------------------------------");
+     public String displayRooms(String roomWeWant) {
+         String textToReturn = "";
         //DataType of what we're looking at  == WROOM 
         //room === The current variable
         //Loops over every w1 index 
@@ -93,9 +93,9 @@ public String getDisplayInventory(){
         for (WRoom room : w1) {
              if(room.getName() .equals(roomWeWant) )
              {
-             System.out.println("The name of the room is: " + room.getName());
+      /*      // System.out.println("The name of the room is: " + room.getName());
             System.out.println("and its description is  \"" + room.getDescription() + "\"");
-
+            
             System.out.println("it has the following entrances\n");
             displayEntrances(room.getEntrances());
 
@@ -106,10 +106,13 @@ public String getDisplayInventory(){
 
             System.out.println("\nthere are " + room.getZombieCount() + " Zombies in the room");
             System.out.println("----------------------------------------------------------------");
-            
-          
+*/
+             textToReturn = ("The name of the room is:" + room.getName() +"It has the following enrances" +room.getEntrances());
+             
         }
     }
+         
+        return textToReturn;
      }
      
       //Displays status of the entrances (locked or unlocked)
