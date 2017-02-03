@@ -133,7 +133,7 @@ public class ZombieBot implements world.ZombieBot {
                 break;
                 //DELETE THIS "test" 
             case "test":
-       
+                 result.add(world.getStart() );
                 break; 
             default:
                 result.add("<b>That's not a verb I recognise.</b>");

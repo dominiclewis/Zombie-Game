@@ -44,16 +44,16 @@ public class ZombieStarter {
   // lets display all the items that can be found in the world
         //displayItems(w1.getItems());
        
-       Item.displayItemsInRoom(w1.getItems());
+        //Pass in the List<> from WorldLoader  
+     //  Item.displayItemsInRoom(w1.getItems());
        
         System.out.println("\n");
         
         // lets display all the rooms contained in the world
-        
+          
         // finally display which room is the start room
         System.out.println("Play begins in the room: " + w1.getStart());
-        
-             
+             displayRooms(w1);
             // create an instane of our server to commnicate with the
             // web frontend.
             InetAddress ip = ip = InetAddress.getLocalHost();
@@ -81,26 +81,16 @@ public class ZombieStarter {
         }
     }
 */
-    
-    public static void displayEntrances(List<WEntrance> entrances) {
-        for (WEntrance e : entrances) {
-            System.out.println(e.getDirection() + " -> " + e.getTo());
-            if (e.isLocked()) {
-                System.out.println("it is locked");
-            }
-            else {
-                System.out.println("not locked");
-            }
-        }
-    }
-     public static void displayRooms(WorldLoader wl) {
+     public static void displayRooms(WorldLoader w1) {
         System.out.println("----------------------------------------------------------------");
         //DataType of what we're looking at  == WROOM 
         //room === The current variable
-        //Loops over every wl index 
+        //Loops over every w1 index 
         //WHEN WE USE THE GETTERS HERE WE ARE ACESSING WROOM'S as we've declared that to be our datatype so can use the operations that come with it 
-        for (WRoom room : wl) {
-            System.out.println("The name of the room is: " + room.getName());
+        for (WRoom room : w1) {
+            if(     ( room.getName() ).equals (w1.getStart() ) ){ //if the name == the start room
+                
+                  System.out.println("The name of the room is: " + room.getName());
             System.out.println("and its description is  \"" + room.getDescription() + "\"");
 
             System.out.println("it has the following entrances\n");
@@ -113,6 +103,23 @@ public class ZombieStarter {
 
             System.out.println("\nthere are " + room.getZombieCount() + " Zombies in the room");
             System.out.println("----------------------------------------------------------------");
+            }
+          
         }
     }
+      
+      
+       public static void displayEntrances(List<WEntrance> entrances) {
+        for (WEntrance e : entrances) {
+            System.out.println(e.getDirection() + " -> " + e.getTo());
+            if (e.isLocked()) {
+                System.out.println("it is locked");
+            }
+            else {
+                System.out.println("not locked");
+            }
+        }
+    }
+   
+     
 }
