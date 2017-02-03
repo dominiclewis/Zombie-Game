@@ -77,15 +77,5 @@ public String getDisplayInventory(){
         this.currentRoom = currentRoom;
     }
     //not static so it references the current state of whatever the object/instances start ran is 
-    public void setCurrentRoom(){
-       //if this is the first time we are setting the current room 
-       //It is implicit that we are in the beginner room
-      if(getStartRan() == false)
-      {
-          //May need a try/catch if it breaks 
-       currentRoom = getStart(); //set the current room to be the start string  
-         
-      }
-    }
-    
+   
 }

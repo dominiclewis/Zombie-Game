@@ -25,7 +25,7 @@ import java.util.List;
 public class ZombieBot implements world.ZombieBot {
     
     private World world; 
-  
+    
     ZombieBot(World world) {
       this.world = world; 
       
@@ -84,8 +84,44 @@ public class ZombieBot implements world.ZombieBot {
     public boolean disableTimer() {
         return false;
     }
-    //output the list from the item class
+  //Checks if we're in the start room
+    public boolean startRoomCheck(){
+           //if this is the first time we are setting the current room 
+       //It is implicit that we are in the start room
+      if(world.getStartRan() == false)
+      {
+          //May need a try/catch if it breaks 
+       world.setCurrentRoom (world.getStart() ); //set the current room to be the start string  
+         world.setStartRan(true); //set the start ran variable to be true
+         return true; //True we are in the start toom 
+      } else  //we aren't in the start room anymore
+      {
+          return false; //fase were not in the start room 
+          
+      }
+    }
+    //returns the currentRoom we are in as a String
+    public String whatRoomAreWeIn()
+    { //First what room are we in?
+    //Are we in start?  
+   boolean areWeInStart = startRoomCheck();
+  
+   //If were in start then then the current room is the start room
+   if(areWeInStart == true)
+   {
+       world.setCurrentRoom(world.getStart());
+   } else{
+       //We are not in the start room
+   }
    
+       return world.getCurrentRoom();
+    }
+    
+   public void look(){
+     //Cycle through all the rooms till we find the current room and output it
+     
+       
+   }
     /**
      * process player commands
      * @param cmd to be processed
