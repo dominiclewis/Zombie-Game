@@ -119,8 +119,7 @@ public class ZombieBot implements world.ZombieBot {
     
    public void look(){
      //Cycle through all the rooms till we find the current room and output it
-     
-       
+     world.displayRooms(whatRoomAreWeIn());
    }
     /**
      * process player commands
@@ -138,7 +137,7 @@ public class ZombieBot implements world.ZombieBot {
                 result.add(world.getInfo());
                 break;
             case "look":
-                result.add("handle look command");
+                look();
                 break;
             case "move":
                 result.add("handle move command");
