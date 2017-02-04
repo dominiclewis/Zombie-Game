@@ -9,6 +9,7 @@ import world.WItem;
 /*
  Author: Dominic Lewis
  */
+
 public class World {   //Private Variables Public class so anything can use the getters and setters with private variables
 
     private String info;  //Stores the world info string
@@ -23,7 +24,7 @@ public class World {   //Private Variables Public class so anything can use the 
 
     World(WorldLoader w1, String info, String displayInventory, String startString, String start) {
 
-    //this.info refers to the class attribute while = refers to the paramater
+        //this.info refers to the class attribute while = refers to the paramater
         //Basically this says the attribute = whatever is passed in through the paramater
         this.startStringHTML = startString; //link the constructor to the attribute;
         this.info = info;
@@ -45,20 +46,17 @@ public class World {   //Private Variables Public class so anything can use the 
     }
 
     //Returns quit variable   
-
     public boolean getQuit() {
         return quit;
     }
 
     //
     //Right click inside the class, insert code, getter 
-
     public String getInfo() {
         return info;
     }
 
     //Getter for start string HTML
-
     public String getStartStringHTML() {
         return startStringHTML;
     }
@@ -144,10 +142,21 @@ public class World {   //Private Variables Public class so anything can use the 
     }
 
     public String displayEntranceDirection(String roomWeWant) {
-        String textToReturn = "";
+        String textToReturn = "It has the following entrances:<br>";
         for (WRoom room : w1) {
             if (room.getName().equals(roomWeWant)) {
-                textToReturn = ("It has the following entrances: " + room.getEntrances());
+                //Room we want has been found
+                if (room.getEntrances().size() > 0) {
+                    for (WEntrance entrance : room.getEntrances()) {
+                        textToReturn += "("
+                                + entrance.getDirection() + " ,"
+                                + entrance.getTo() + " ,)"
+                                + (entrance.isLocked() ? " Locked" : " Unlocked")+ "<br>";// is it locked or unlocke ? true or false
+
+                    }
+
+                }
+
             }
 
         }
@@ -166,24 +175,23 @@ public class World {   //Private Variables Public class so anything can use the 
         return textToReturn;
 
     }
-    
-    public String displayItemResource(String nameOfItemWeWant)
-    {
+
+    public String displayItemResource(String nameOfItemWeWant) {
         //iterate through every item in w1 
         //The datatypes were using is just a WItem list (just a list that is bound to a class if that makes sense
-   String itemResource = "";
-        for(WItem curItemVar :w1.getItems())
-        {
-           if (curItemVar.getName().equals(nameOfItemWeWant))  //Get the name of the current index of getItems we're looking
-           {// If the name at this index equals what we want
-               //then set item resource to be the HTML value at the corresponsing index
-              itemResource = curItemVar.getHtml(); 
-              
-           }
-    }
+        String itemResource = "";
+        for (WItem curItemVar : w1.getItems()) {
+            if (curItemVar.getName().equals(nameOfItemWeWant)) //Get the name of the current index of getItems we're looking
+            {// If the name at this index equals what we want
+                //then set item resource to be the HTML value at the corresponsing index
+                itemResource = curItemVar.getHtml();
+
+            }
+        }
         //return the html
         return itemResource;
     }
+
     public List itemIndexInSpecRoom(String roomWeWant) {
 
         List itemIndex = new ArrayList<Integer>();
@@ -200,29 +208,26 @@ public class World {   //Private Variables Public class so anything can use the 
             }
         }
 
-//              
         return itemIndex;
 
     }
 
     //return the items
-
     public String displayItemName(String roomWeWant, int index) {
         String itemName = "";
         for (WRoom room : w1) {
 
             if (room.getName().equals(roomWeWant)) {
-               
+
                 itemName = room.getItems().get(index); //this accesses the room.getItemslist and inside that it gets finds the name of the value we want to outpout
 
             }
         }
-       
+
         return itemName;
     }
 
     //Displays status of the entrances (locked or unlocked)
-
     public void displayEntrances(List<WEntrance> entrances) {
         for (WEntrance e : entrances) {
             System.out.println(e.getDirection() + " -> " + e.getTo());
