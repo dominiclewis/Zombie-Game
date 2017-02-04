@@ -83,38 +83,90 @@ public String getDisplayInventory(){
     {
         this.currentRoom = currentRoom;
     }
-    //Methods which output the ting
-     public String displayRooms(String roomWeWant) {
+   
+//  
+//    //Methods which output the ting
+//     public String displayRooms(String roomWeWant) {
+//         String textToReturn = "";
+//        //DataType of what we're looking at  == WROOM 
+//        //room === The current variable
+//        //Loops over every w1 index 
+//        //WHEN WE USE THE GETTERS HERE WE ARE ACESSING WROOM'S as we've declared that to be our datatype so can use the operations that come with it 
+//        for (WRoom room : w1) {
+//             if(room.getName() .equals(roomWeWant) )
+//             {
+//      /*   DONE   // System.out.println("The name of the room is: " + room.getName());
+//           DONE System.out.println("and its description is  \"" + room.getDescription() + "\"");
+//            
+//         DONE   System.out.println("it has the following entrances\n");
+//         DONE   displayEntrances(room.getEntrances());
+//
+//            System.out.println("the following items are placed around the room\n");
+//            for (String itemName: room.getItems()) {
+//                System.out.println(itemName);
+//            }
+//
+//      DONE      System.out.println("\nthere are " + room.getZombieCount() + " Zombies in the room");
+//            System.out.println("----------------------------------------------------------------");
+//*/
+//          DONE   textToReturn = ("The name of the room is:" + room.getName() +"It has the following enrances" +room.getEntrances());
+//             
+//        }
+//    }
+//         
+//        return textToReturn;
+//     }
+
+     public String displayRoomName(String roomWeWant)
+     {
          String textToReturn = "";
-        //DataType of what we're looking at  == WROOM 
-        //room === The current variable
-        //Loops over every w1 index 
-        //WHEN WE USE THE GETTERS HERE WE ARE ACESSING WROOM'S as we've declared that to be our datatype so can use the operations that come with it 
-        for (WRoom room : w1) {
-             if(room.getName() .equals(roomWeWant) )
-             {
-      /*      // System.out.println("The name of the room is: " + room.getName());
-            System.out.println("and its description is  \"" + room.getDescription() + "\"");
-            
-            System.out.println("it has the following entrances\n");
-            displayEntrances(room.getEntrances());
-
-            System.out.println("the following items are placed around the room\n");
-            for (String itemName: room.getItems()) {
-                System.out.println(itemName);
-            }
-
-            System.out.println("\nthere are " + room.getZombieCount() + " Zombies in the room");
-            System.out.println("----------------------------------------------------------------");
-*/
-             textToReturn = ("The name of the room is:" + room.getName() +"It has the following enrances" +room.getEntrances());
-             
-        }
-    }
+         for (WRoom room :w1 ) {
+             if(room.getName() .equals(roomWeWant) ){
+            textToReturn = ("The name of the room is: " + room.getName());    
+         }
          
-        return textToReturn;
+     }
+         return textToReturn; 
+     }
+    
+     public String displayRoomDescription(String roomWeWant)
+     {
+        
+         String textToReturn = "";
+         for (WRoom room :w1 ) {
+             if(room.getName() .equals(roomWeWant) ){
+            textToReturn = ("The Description of the room is: " + room.getDescription());    
+         }
+         
+     }
+         return textToReturn; 
+         
      }
      
+     public String displayEntranceDirection(String roomWeWant)
+     {
+         String textToReturn = "";
+         for (WRoom room :w1 ) {
+             if(room.getName() .equals(roomWeWant) ){
+            textToReturn = ("It has the following entrances: " + room.getEntrances());    
+         }
+         
+     }
+         return textToReturn; 
+         
+     }
+    public String displayZombieCount(String roomWeWant)
+    {
+        String textToReturn = "";
+         for (WRoom room :w1 ) {
+             if(room.getName() .equals(roomWeWant) ){
+            textToReturn = ("Zombies in the room: " + room.getZombieCount());    
+         }
+         
+     }
+         return textToReturn; 
+        
+    }
       //Displays status of the entrances (locked or unlocked)
        public void displayEntrances(List<WEntrance> entrances) {
         for (WEntrance e : entrances) {

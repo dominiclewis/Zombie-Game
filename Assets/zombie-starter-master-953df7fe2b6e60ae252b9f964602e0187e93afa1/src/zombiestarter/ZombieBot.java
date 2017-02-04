@@ -133,7 +133,10 @@ public class ZombieBot implements world.ZombieBot {
                 result.add(world.getInfo());
                 break;
             case "look":                
-                result.add(world.displayRooms(whatRoomAreWeIn() ) );
+                result.add(world.displayRoomName(whatRoomAreWeIn()));
+                result.add(world.displayRoomDescription(whatRoomAreWeIn()));
+                result.add(world.displayEntranceDirection(whatRoomAreWeIn()));
+                result.add(world.displayZombieCount(whatRoomAreWeIn()));
                 break;
             case "move":
                 result.add("handle move command");
