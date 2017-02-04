@@ -17,7 +17,7 @@ public class World {   //Private Variables Public class so anything can use the 
     private String displayInventory; //HTML used for formatting the inventory?
     private String startStringHTML; //String to be displayed to the user at the start of the game
     private String start; //String that is used for the start room I think 
-    private String currentRoom;
+    private String currentRoom; //PLEASE ALWAYS UPDATE THIS VARIABLE WITH THE NAME (STRING) OF THE CURRENT ROOM WE ARE IN 
     private boolean startRan = false;
     private WorldLoader w1;
     //Constructor (THIS IS THE INFO WE USE TO CONSTRUCT THE CLASS * CALLTIME)
@@ -84,39 +84,7 @@ public class World {   //Private Variables Public class so anything can use the 
     public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
     }
-
-//  
-//    //Methods which output the ting
-//     public String displayRooms(String roomWeWant) {
-//         String textToReturn = "";
-//        //DataType of what we're looking at  == WROOM 
-//        //room === The current variable
-//        //Loops over every w1 index 
-//        //WHEN WE USE THE GETTERS HERE WE ARE ACESSING WROOM'S as we've declared that to be our datatype so can use the operations that come with it 
-//        for (WRoom room : w1) {
-//             if(room.getName() .equals(roomWeWant) )
-//             {
-//      /*   DONE   // System.out.println("The name of the room is: " + room.getName());
-//           DONE System.out.println("and its description is  \"" + room.getDescription() + "\"");
-//            
-//         DONE   System.out.println("it has the following entrances\n");
-//         DONE   displayEntrances(room.getEntrances());
-//
-//            System.out.println("the following items are placed around the room\n");
-//            for (String itemName: room.getItems()) {
-//                System.out.println(itemName);
-//            }
-//
-//      DONE      System.out.println("\nthere are " + room.getZombieCount() + " Zombies in the room");
-//            System.out.println("----------------------------------------------------------------");
-//*/
-//          DONE   textToReturn = ("The name of the room is:" + room.getName() +"It has the following enrances" +room.getEntrances());
-//             
-//        }
-//    }
-//         
-//        return textToReturn;
-//     }
+  //FOR LOOK
     public String displayRoomName(String roomWeWant) {
         String textToReturn = "";
         for (WRoom room : w1) {
@@ -127,7 +95,7 @@ public class World {   //Private Variables Public class so anything can use the 
         }
         return textToReturn;
     }
-
+  //FOR LOOK
     public String displayRoomDescription(String roomWeWant) {
 
         String textToReturn = "";
@@ -140,7 +108,7 @@ public class World {   //Private Variables Public class so anything can use the 
         return textToReturn;
 
     }
-
+  //FOR LOOK
     public String displayEntranceDirection(String roomWeWant) {
         String textToReturn = "It has the following entrances:<br>";
         for (WRoom room : w1) {
@@ -150,7 +118,7 @@ public class World {   //Private Variables Public class so anything can use the 
                     for (WEntrance entrance : room.getEntrances()) {
                         textToReturn += "("
                                 + entrance.getDirection() + " ,"
-                                + entrance.getTo() + " ,)"
+                                + entrance.getTo() + ")"
                                 + (entrance.isLocked() ? " Locked" : " Unlocked")+ "<br>";// is it locked or unlocke ? true or false
 
                     }
@@ -163,7 +131,7 @@ public class World {   //Private Variables Public class so anything can use the 
         return textToReturn;
 
     }
-
+//FOR LOOK
     public String displayZombieCount(String roomWeWant) {
         String textToReturn = "";
         for (WRoom room : w1) {
@@ -175,7 +143,7 @@ public class World {   //Private Variables Public class so anything can use the 
         return textToReturn;
 
     }
-
+  //FOR LOOK
     public String displayItemResource(String nameOfItemWeWant) {
         //iterate through every item in w1 
         //The datatypes were using is just a WItem list (just a list that is bound to a class if that makes sense
@@ -191,10 +159,10 @@ public class World {   //Private Variables Public class so anything can use the 
         //return the html
         return itemResource;
     }
-
+  //FOR LOOK
     public List itemIndexInSpecRoom(String roomWeWant) {
 
-        List itemIndex = new ArrayList<Integer>();
+        List itemIndex = new ArrayList<>();
 
         int noToReturn = 0; //Counts how many items there are in a room so we can loop the outputter the correct amount of times
         for (WRoom room : w1) {
@@ -211,7 +179,7 @@ public class World {   //Private Variables Public class so anything can use the 
         return itemIndex;
 
     }
-
+  //FOR LOOK
     //return the items
     public String displayItemName(String roomWeWant, int index) {
         String itemName = "";
@@ -225,18 +193,6 @@ public class World {   //Private Variables Public class so anything can use the 
         }
 
         return itemName;
-    }
-
-    //Displays status of the entrances (locked or unlocked)
-    public void displayEntrances(List<WEntrance> entrances) {
-        for (WEntrance e : entrances) {
-            System.out.println(e.getDirection() + " -> " + e.getTo());
-            if (e.isLocked()) {
-                System.out.println("it is locked");
-            } else {
-                System.out.println("not locked");
-            }
-        }
     }
 
 }
