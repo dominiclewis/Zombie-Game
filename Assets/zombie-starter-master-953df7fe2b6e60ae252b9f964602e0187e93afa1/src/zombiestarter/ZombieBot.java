@@ -137,6 +137,23 @@ public class ZombieBot implements world.ZombieBot {
                 result.add(world.displayRoomDescription(whatRoomAreWeIn()));
                 result.add(world.displayEntranceDirection(whatRoomAreWeIn()));
                 result.add(world.displayZombieCount(whatRoomAreWeIn()));
+                //Items in the room 
+                //Create a list of the indexes of the items in the room 
+                 List itemIndex =world.itemIndexInSpecRoom(whatRoomAreWeIn());
+                //Get the number of indexes in the initial array
+                 int noOfItems = itemIndex.size();
+                 //Loop for however many times needed
+              
+                 for(int i =0; i< noOfItems; i++){
+                 //Get item name
+            
+                     result.add(world.displayItemName(whatRoomAreWeIn(), i));                    
+                     //get item resource
+                     
+                 }
+                 
+                
+                 
                 break;
             case "move":
                 result.add("handle move command");
