@@ -146,10 +146,11 @@ public class ZombieBot implements world.ZombieBot {
               
                  for(int i =0; i< noOfItems; i++){
                  //Get item name
-            
+                    
                      result.add(world.displayItemName(whatRoomAreWeIn(), i));                    
                      //get item resource
-                     
+                     //I know this is ugly but I think it works
+                     result.add(world.displayItemResource(world.displayItemName(whatRoomAreWeIn(),i) ) );
                  }
                  
                 

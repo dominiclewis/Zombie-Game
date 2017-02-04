@@ -5,7 +5,7 @@ import java.util.List;
 import world.WEntrance;
 import world.WRoom;
 import world.WorldLoader;
-
+import world.WItem;
 /*
  Author: Dominic Lewis
  */
@@ -166,7 +166,24 @@ public class World {   //Private Variables Public class so anything can use the 
         return textToReturn;
 
     }
-
+    
+    public String displayItemResource(String nameOfItemWeWant)
+    {
+        //iterate through every item in w1 
+        //The datatypes were using is just a WItem list (just a list that is bound to a class if that makes sense
+   String itemResource = "";
+        for(WItem curItemVar :w1.getItems())
+        {
+           if (curItemVar.getName().equals(nameOfItemWeWant))  //Get the name of the current index of getItems we're looking
+           {// If the name at this index equals what we want
+               //then set item resource to be the HTML value at the corresponsing index
+              itemResource = curItemVar.getHtml(); 
+              
+           }
+    }
+        //return the html
+        return itemResource;
+    }
     public List itemIndexInSpecRoom(String roomWeWant) {
 
         List itemIndex = new ArrayList<Integer>();
@@ -176,7 +193,6 @@ public class World {   //Private Variables Public class so anything can use the 
             if (room.getName().equals(roomWeWant)) {
 
                 for (String itemName : room.getItems()) {
-                    System.out.println("we are here 2");
                     //add the index to the list 
                     itemIndex.add(itemName);
                 }
@@ -196,12 +212,12 @@ public class World {   //Private Variables Public class so anything can use the 
         for (WRoom room : w1) {
 
             if (room.getName().equals(roomWeWant)) {
-                System.out.println("we are here 3");
+               
                 itemName = room.getItems().get(index); //this accesses the room.getItemslist and inside that it gets finds the name of the value we want to outpout
 
             }
         }
-        System.out.println("are we ever here? 3 " +itemName);
+       
         return itemName;
     }
 
