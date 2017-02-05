@@ -84,18 +84,22 @@ public class World {   //Private Variables Public class so anything can use the 
     public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
     }
-  //FOR LOOK
+
+    //FOR LOOK
+
     public String displayRoomName(String roomWeWant) {
         String textToReturn = "";
         for (WRoom room : w1) {
             if (room.getName().equals(roomWeWant)) {
-                textToReturn = ("The name of the room is: " + room.getName());
+                textToReturn = ("<b>You are in the " + room.getName() + "</b>");
             }
 
         }
         return textToReturn;
     }
-  //FOR LOOK
+
+    //FOR LOOK
+
     public String displayRoomDescription(String roomWeWant) {
 
         String textToReturn = "";
@@ -108,18 +112,50 @@ public class World {   //Private Variables Public class so anything can use the 
         return textToReturn;
 
     }
-  //FOR LOOK
+
+    //Get the roomWeWant from the class we use to find it in look
+    //The directionWeWant will be from cmds 
+    //we Want to scan every room till for find the room we want
+    //then we want to getDirection till it returns the one we want
+    //We then want to check if it's locked
+    //If it's not then we move there by assigning the value
+
+    public String findEntranceName(String roomWeWant, String directionWeWant) {
+        String roomName = "NO VALID ROOM GO TO FIND ENTRANCE NAME DOM AND FIX THIS";
+        for (WRoom room : w1) { //Look through worldloaders rooms
+            if (room.getName().equals(roomWeWant)) { //FIND THE ROOM WE ARE IN
+                //Room we want has been found
+                if (room.getEntrances().size() > 0) { //CHECK THE ROOM WE ARE IN HAS ENTRANCES
+                    for (WEntrance entrance : room.getEntrances()) { //LOOP THROUGH ALL ENTRANCES
+                        //TURN TO LOWERCASE THEN CHECK IF IT EQUALS THE DIRECTION WE WANT
+                        if (((entrance.getDirection().toLowerCase()).equals(directionWeWant)) == true) //If the direction we specify matches the Directions vaailable in the room(entrance variable which iterates through all rooms
+                        {
+                            //CHECK IF LOCKED IF NO THEN RETURN ENTRANCE IF YES THEN RETURN LOCKED AND CHECK IT
+                            return entrance.getTo();
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+        return roomName;
+    }
+
+    //FOR LOOK
+
     public String displayEntranceDirection(String roomWeWant) {
         String textToReturn = "It has the following entrances:<br>";
         for (WRoom room : w1) {
-            if (room.getName().equals(roomWeWant)) {
+            if (room.getName().equals(roomWeWant)) { //implicit tru
                 //Room we want has been found
                 if (room.getEntrances().size() > 0) {
                     for (WEntrance entrance : room.getEntrances()) {
                         textToReturn += "("
                                 + entrance.getDirection() + " ,"
                                 + entrance.getTo() + ")"
-                                + (entrance.isLocked() ? " Locked" : " Unlocked")+ "<br>";// is it locked or unlocke ? true or false
+                                + (entrance.isLocked() ? " Locked" : " Unlocked") + "<br>";// is it locked or unlocke ? true or false
 
                     }
 
@@ -132,6 +168,7 @@ public class World {   //Private Variables Public class so anything can use the 
 
     }
 //FOR LOOK
+
     public String displayZombieCount(String roomWeWant) {
         String textToReturn = "";
         for (WRoom room : w1) {
@@ -143,7 +180,9 @@ public class World {   //Private Variables Public class so anything can use the 
         return textToReturn;
 
     }
-  //FOR LOOK
+
+    //FOR LOOK
+
     public String displayItemResource(String nameOfItemWeWant) {
         //iterate through every item in w1 
         //The datatypes were using is just a WItem list (just a list that is bound to a class if that makes sense
@@ -159,7 +198,9 @@ public class World {   //Private Variables Public class so anything can use the 
         //return the html
         return itemResource;
     }
-  //FOR LOOK
+
+    //FOR LOOK
+
     public List itemIndexInSpecRoom(String roomWeWant) {
 
         List itemIndex = new ArrayList<>();
@@ -179,8 +220,10 @@ public class World {   //Private Variables Public class so anything can use the 
         return itemIndex;
 
     }
-  //FOR LOOK
+
+    //FOR LOOK
     //return the items
+
     public String displayItemName(String roomWeWant, int index) {
         String itemName = "";
         for (WRoom room : w1) {

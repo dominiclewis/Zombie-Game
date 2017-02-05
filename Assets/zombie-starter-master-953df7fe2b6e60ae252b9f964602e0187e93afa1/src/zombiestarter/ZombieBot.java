@@ -126,15 +126,16 @@ public class ZombieBot implements world.ZombieBot {
     public List<String> processCmd(String cmd) {
         ArrayList<String> result = new ArrayList<>();
         
-        String[] cmds = cmd.split(" "); // split cmd by space
+        String[] cmds = cmd.split(" "); // split cmd by space //So when whitespace is detected it is the secound element in the array
         
         switch(cmds[0]) {
             case "info":
                 result.add(world.getInfo());
                 break;
             case "look":                
+                //Some of this is done so stupidly because I didn't realise I could line break with BR I thought I had to invoke the add method to print across multiple lines 
                 result.add(world.displayRoomName(whatRoomAreWeIn()));
-                result.add(world.displayRoomDescription(whatRoomAreWeIn()));
+               //result.add(world.displayRoomDescription(whatRoomAreWeIn())); //do we actually need this part in
                 result.add(world.displayEntranceDirection(whatRoomAreWeIn()));
                 result.add(world.displayZombieCount(whatRoomAreWeIn()));
                 //Items in the room 
@@ -158,6 +159,15 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "move":
                 result.add("handle move command");
+                //Move the direction to the directionString
+              //  System.out.println(world.findEntranceName(whatRoomAreWeIn(),cmds[1]));
+                result.add(world.findEntranceName(whatRoomAreWeIn(),cmds[1])); // test it 
+                //Try to access the room 
+                
+                //MOVE DIRECTION(NE,SE etc)
+                //eg move NE
+               //Is the door locked? Check for key reject if necessary  
+               
                 break;
             case "pickup":  
                 result.add("handle pickup command");
