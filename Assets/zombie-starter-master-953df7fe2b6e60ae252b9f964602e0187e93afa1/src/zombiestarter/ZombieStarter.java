@@ -39,8 +39,8 @@ public class ZombieStarter {
              
              WorldLoader w1 = new WorldLoader();  //Create new instance of the WorldLoader class *Load the Json file 
               
-             World world = new World(w1,w1.getInfo(),w1.getInventoryHtml(),w1.getStartHtml(),w1.getStart()); //Inside the worldLoader class to access the methods inside
-            
+             World world = new World(w1,w1.getInfo(),w1.getStartHtml(),w1.getStart()); //Inside the worldLoader class to access the methods inside
+             Item userItem = new Item(w1.getInventoryHtml()); //New Item object passed in the html for outputting the itesm
   // lets display all the items that can be found in the world
         //displayItems(w1.getItems());
        
@@ -62,7 +62,7 @@ public class ZombieStarter {
                     // which allows the address to then be typed into client.
                     ip.getHostAddress(),
                     8085,
-                    new ZombieBot(world)
+                    new ZombieBot(world,userItem) // part of the zombie server constructor 
             );
          } catch (UnknownHostException ex) {
             Logger.getLogger(

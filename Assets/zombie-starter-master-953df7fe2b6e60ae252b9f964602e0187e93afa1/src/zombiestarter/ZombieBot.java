@@ -25,10 +25,10 @@ import java.util.List;
 public class ZombieBot implements world.ZombieBot {
     
     private World world; 
-    
-    ZombieBot(World world) {
+    private Item userItem; //Variable to access the class  
+    ZombieBot(World world, Item userItem) {
       this.world = world; 
-      
+      this.userItem = userItem;
     }
     
     /**
@@ -176,7 +176,7 @@ public class ZombieBot implements world.ZombieBot {
                  world.setQuit(true); 
                 break;
             case "inventory":
-                result.add(world.getDisplayInventory());
+                 result.add(userItem.getInventoryHtml());
                 break;
             case "blank":
                 result.add("I beg your pardon?");

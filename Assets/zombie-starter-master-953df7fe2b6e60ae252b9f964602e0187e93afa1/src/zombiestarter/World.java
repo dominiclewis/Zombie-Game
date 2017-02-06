@@ -14,7 +14,6 @@ public class World {   //Private Variables Public class so anything can use the 
 
     private String info;  //Stores the world info string
     private boolean quit = false;  //Stores whether or not we should quit
-    private String displayInventory; //HTML used for formatting the inventory?
     private String startStringHTML; //String to be displayed to the user at the start of the game
     private String start; //String that is used for the start room I think 
     private String currentRoom; //PLEASE ALWAYS UPDATE THIS VARIABLE WITH THE NAME (STRING) OF THE CURRENT ROOM WE ARE IN 
@@ -22,23 +21,17 @@ public class World {   //Private Variables Public class so anything can use the 
     private WorldLoader w1;
     //Constructor (THIS IS THE INFO WE USE TO CONSTRUCT THE CLASS * CALLTIME)
 
-    World(WorldLoader w1, String info, String displayInventory, String startString, String start) {
+    World(WorldLoader w1, String info, String startString, String start) {
 
         //this.info refers to the class attribute while = refers to the paramater
         //Basically this says the attribute = whatever is passed in through the paramater
         this.startStringHTML = startString; //link the constructor to the attribute;
         this.info = info;
-        this.displayInventory = displayInventory;
         this.start = start;
         this.w1 = w1;
     }
 
-//Getter for displayInventory
-    public String getDisplayInventory() {
-        //Returns class attribute
-        return displayInventory;
-    }
-//SETSQUIT
+
 
     public void setQuit(boolean quit) {
         //THIS means we're addressing the one in the class ddeclaration 

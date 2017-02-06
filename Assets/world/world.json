@@ -1,17 +1,17 @@
-{   
+{
     "info" : "<p class=\\\"lead\\\">Welcome to OOSD1 Zombies</p><p>Zombies are real, no matter what you mum told you! UWE's campus has been invaded and you must kill the zombies and get to the exit room, to save yourself and the University. Good luck!</p>",
 
     "startHtml" : "let's play",
-    
+
     "inventoryHtml" : "<img src=\\\"../assets/backpack.png\\\">",
-    
+
     "items" : [
         { "name" : "GOLD", "html" : "<img src=\\\"../assets/gold.png\\\">" },
         { "name" : "KEY", "html" : "<img src=\\\"../assets/key.png\\\">" },
         { "name" : "CHAINSAW", "html" : "<img src=\\\"../assets/chainsaw.png\\\">" },
         { "name" : "DAISY", "html" : "<img src=\\\"../assets/daisy.png\\\">" }
     ],
-    
+
     "rooms" : [
     {
         "name" : "Toilet",
