@@ -13,7 +13,7 @@ import world.WItem;
 public class World {   //Private Variables Public class so anything can use the getters and setters with private variables
 
     private String info;  //Stores the world info string
-    private boolean quit;  //Stores whether or not we should quit
+    private boolean quit = false;  //Stores whether or not we should quit
     private String displayInventory; //HTML used for formatting the inventory?
     private String startStringHTML; //String to be displayed to the user at the start of the game
     private String start; //String that is used for the start room I think 
@@ -121,7 +121,7 @@ public class World {   //Private Variables Public class so anything can use the 
     //If it's not then we move there by assigning the value
 
     public String findEntranceName(String roomWeWant, String directionWeWant) {
-        String roomName = "NO VALID ROOM GO TO FIND ENTRANCE NAME DOM AND FIX THIS";
+        String roomName = getCurrentRoom();
         for (WRoom room : w1) { //Look through worldloaders rooms
             if (room.getName().equals(roomWeWant)) { //FIND THE ROOM WE ARE IN
                 //Room we want has been found
@@ -131,7 +131,16 @@ public class World {   //Private Variables Public class so anything can use the 
                         if (((entrance.getDirection().toLowerCase()).equals(directionWeWant)) == true) //If the direction we specify matches the Directions vaailable in the room(entrance variable which iterates through all rooms
                         {
                             //CHECK IF LOCKED IF NO THEN RETURN ENTRANCE IF YES THEN RETURN LOCKED AND CHECK IT
-                            return entrance.getTo();
+
+                            if (entrance.isLocked() == false) {
+                                return entrance.getTo(); //Returns the name of the room
+                            } else {
+                                //Check for a key 
+                                //If a key remove one and change the room 
+                                //If no key
+                                //Do not allow them to enter
+                              return getCurrentRoom(); //return the string for the current room which means that we haven't changed room
+                            }
                         }
                     }
 

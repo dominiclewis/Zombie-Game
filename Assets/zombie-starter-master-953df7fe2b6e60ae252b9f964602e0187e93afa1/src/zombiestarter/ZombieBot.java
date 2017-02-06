@@ -37,16 +37,8 @@ public class ZombieBot implements world.ZombieBot {
      */ 
     @Override
             //This checks that the world quit attribute is set to true, if so it returns true
-    public boolean shouldQuit() {
-  
-       if(world.getQuit() == true)
-       {
-           return true; 
-       } 
-       //Quit hasn't been entered yet so do not quit
-       else{ 
-        return false;
-       }
+    public boolean shouldQuit() {  
+      return world.getQuit(); //returns true if quit has been set, returns false anyway
     }  
     
     /**
@@ -158,10 +150,8 @@ public class ZombieBot implements world.ZombieBot {
                  
                 break;
             case "move":
-                result.add("handle move command");
                 //Move the direction to the directionString
-              //  System.out.println(world.findEntranceName(whatRoomAreWeIn(),cmds[1]));
-                result.add(world.findEntranceName(whatRoomAreWeIn(),cmds[1])); // test it 
+                world.setCurrentRoom(world.findEntranceName(whatRoomAreWeIn(),cmds[1]));
                 //Try to access the room 
                 
                 //MOVE DIRECTION(NE,SE etc)
