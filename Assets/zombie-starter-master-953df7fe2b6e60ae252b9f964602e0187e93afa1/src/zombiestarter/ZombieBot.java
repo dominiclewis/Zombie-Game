@@ -160,7 +160,7 @@ public class ZombieBot implements world.ZombieBot {
                
                 break;
             case "pickup":  
-                result.add("handle pickup command");
+                result.add(userItem.pickUp(cmds[1]));//Pass in the second paramater passed to cmds / entered 
                 break;
             case "kill":
                 result.add("handle kill command");
@@ -177,6 +177,9 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "inventory":
                  result.add(userItem.getInventoryHtml());
+                 //html ggot
+                 //Construct the inventory now
+                 userItem.constructPlayerInventoryString();
                 break;
             case "blank":
                 result.add("I beg your pardon?");
