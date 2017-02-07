@@ -40,12 +40,12 @@ public class ZombieStarter {
              WorldLoader w1 = new WorldLoader();  //Create new instance of the WorldLoader class *Load the Json file 
               
              World world = new World(w1,w1.getInfo(),w1.getStartHtml(),w1.getStart()); //Inside the worldLoader class to access the methods inside
-             Item userItem = new Item(w1.getInventoryHtml()); //New Item object passed in the html for outputting the itesm
+             Inventory userItem = new Inventory(w1.getInventoryHtml(),w1.getItems()); //New Inventory object passed in the html for outputting the itesm
   // lets display all the items that can be found in the world
         //displayItems(w1.getItems());
        
         //Pass in the List<> from WorldLoader  
-     //  Item.displayItemsInRoom(w1.getItems());
+     //  Inventory.displayItemsInRoom(w1.getItems());
        
         
         // lets display all the rooms contained in the world

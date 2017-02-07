@@ -12,17 +12,19 @@ import world.WItem;
  *
  * @author Dominic
  */
-public class Item {
+public class Inventory {
     private String inventoryHtml; 
-    
+      
+    List<WItem> itemsAvailable = new ArrayList<WItem>(); 
+            
  List<String> playerInventory = new ArrayList<String>(); //List for player inventory 
  String playerInventoryString; //This is actually string which will be returned 
  //This is just a string of item names
 //Inventory outputs as the inventory html, then the images of the items
    
-    Item(String inventoryHtml){
+    Inventory(String inventoryHtml, List itemsAvailable){
         this.inventoryHtml = inventoryHtml; 
-        
+        this.itemsAvailable = itemsAvailable; 
     };
     
     
@@ -48,16 +50,22 @@ public String constructPlayerInventoryString(){
         for(int i = 0; i<amountInInventory; i++ ){
           //get the html for the corresponding item
          
-            
+          stringToReturn+= ((getHtmlForItem(playerInventory.get(i),itemsAvailable)) +" ");
         }
         
-    }
+    } 
     return stringToReturn; 
 }
 //This function returns the html for th eitem we are looking for 
-String getHtmlForItem(String nameOfItemSought){
+String getHtmlForItem(String nameOfItemSought, List <WItem> items){
    String stringToReturn="";
    
+ for (WItem item: items)
+ {
+  if(nameOfItemSought.toLowerCase().equals(item.getName().toLowerCase())){
+      return item.getHtml(); //returns the html 
+  }   
+ }
    
    return stringToReturn;
 }

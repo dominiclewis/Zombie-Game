@@ -25,8 +25,8 @@ import java.util.List;
 public class ZombieBot implements world.ZombieBot {
     
     private World world; 
-    private Item userItem; //Variable to access the class  
-    ZombieBot(World world, Item userItem) {
+    private Inventory userItem; //Variable to access the class  
+    ZombieBot(World world, Inventory userItem) {
       this.world = world; 
       this.userItem = userItem;
     }
@@ -179,7 +179,7 @@ public class ZombieBot implements world.ZombieBot {
                  result.add(userItem.getInventoryHtml());
                  //html ggot
                  //Construct the inventory now
-                 userItem.constructPlayerInventoryString();
+               result.add(userItem.constructPlayerInventoryString());  
                 break;
             case "blank":
                 result.add("I beg your pardon?");
