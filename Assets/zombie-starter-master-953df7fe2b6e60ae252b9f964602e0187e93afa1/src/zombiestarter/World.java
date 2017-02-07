@@ -15,7 +15,7 @@ public class World {   //Private Variables Public class so anything can use the 
     private String info;  //Stores the world info string
     private boolean quit = false;  //Stores whether or not we should quit
     private String startStringHTML; //String to be displayed to the user at the start of the game
-    private List<String> roomNames = new ArrayList<String>();//This variable will be used to show 
+    private List<String> roomNames = new ArrayList<String>();//This variable will be used to check when we should construct a new room instance
     private String start; //String that is used for the start room I think 
     private String currentRoom; //PLEASE ALWAYS UPDATE THIS VARIABLE WITH THE NAME (STRING) OF THE CURRENT ROOM WE ARE IN 
     private boolean startRan = false;
@@ -241,4 +241,13 @@ public class World {   //Private Variables Public class so anything can use the 
         return itemName;
     }
 
+    //This will check for a new room if so 
+    public boolean areWeInANewRoom(){
+        boolean areWe = false; 
+       //If we are in the start room 
+       //The linkedList should be empty
+       
+        
+        return areWe;
+    }
 }
