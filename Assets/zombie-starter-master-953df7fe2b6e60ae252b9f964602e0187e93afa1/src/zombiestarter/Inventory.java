@@ -58,6 +58,9 @@ public String constructPlayerInventoryString(){
 }
 //This function returns the html for th eitem we are looking for 
 String getHtmlForItem(String nameOfItemSought, List <WItem> items){
+    //MAKE A CLASS TO STORE THE CURRENT STATES 
+    //THEN ADD EXTRA CHECK TO CHECK IT'S IN A ROOM 
+    //MAYEB AN ARRAY WHICH STORES THE ROOM, WHAT'S IN IT
    String stringToReturn="";
    
  for (WItem item: items)
