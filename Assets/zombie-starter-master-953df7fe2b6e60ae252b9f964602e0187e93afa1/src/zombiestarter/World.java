@@ -251,7 +251,7 @@ public void setUpNewRoom()
   if(newRoom == true)
   {
   roomInfo += " " +displayEntranceDirection(currentRoom);
-  roomInfo += " " +displayZombieCount(currentRoom);
+  roomInfo += " " +displayZombieCount(currentRoom) +"<br>";
   //Create a list of the items in the specified room
   List itemIndex = itemIndexInSpecRoom(currentRoom);
   int noOfItems = itemIndex.size();
@@ -263,10 +263,6 @@ for(int i =0; i< noOfItems; i++){
   }
  
  
-for (Map.Entry<String, String> entry : roomStatusHashMap.entrySet()) {
-    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-}
-
 }
     //This will check for a new room if so returns true if else returns false
     public boolean areWeInANewRoom(){
@@ -284,7 +280,7 @@ for (Map.Entry<String, String> entry : roomStatusHashMap.entrySet()) {
        else
            //Check all elements of the roomName to find out if curRoomName is in it
        {
-           for(int i = 0; i<=roomNames.size(); i++)
+           for(int i = 0; i<roomNames.size(); i++)
            {
             if(roomNames.get(i).equalsIgnoreCase(currentRoom))
             {//The room is not new
@@ -306,20 +302,18 @@ for (Map.Entry<String, String> entry : roomStatusHashMap.entrySet()) {
     }
     
 public String look(){
-    
     String roomInfo = ""; 
     String roomName = "";
+    //Loop throught the hash
     for (Map.Entry<String, String> entry : roomStatusHashMap.entrySet()) {
             System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
         if(currentRoom.equalsIgnoreCase(entry.getKey())) //If the room we want equals the key name            
         {
-    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
     roomName = entry.getKey();
     roomInfo = entry.getValue();
         }
 }
-    System.out.println(roomName + " xxxxxx" +roomInfo+currentRoom);
-    return (roomName + " " +roomInfo);
+    return (roomName + "<br>" +roomInfo);
 }
 }
 

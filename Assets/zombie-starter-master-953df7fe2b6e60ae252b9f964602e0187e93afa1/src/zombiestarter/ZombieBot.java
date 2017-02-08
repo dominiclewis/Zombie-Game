@@ -26,10 +26,10 @@ import java.util.List;
 public class ZombieBot implements world.ZombieBot {
     
     private World world; 
-    private Inventory userItem; //Variable to access the class  
+    private Inventory userInventory; //Variable to access the class  
     ZombieBot(World world, Inventory userItem) {
       this.world = world; 
-      this.userItem = userItem;
+      this.userInventory = userItem;
     }
     
     /**
@@ -167,7 +167,10 @@ public class ZombieBot implements world.ZombieBot {
                
                 break;
             case "pickup":  
-                result.add(userItem.pickUp(cmds[1]));//Pass in the second paramater passed to cmds / entered 
+                String item = cmds[1];
+                result.add(userInventory.pickUp(item));//Pass in the second paramater passed to cmds / entered 
+                
+                
                 break;
             case "kill":
                 result.add("handle kill command");
@@ -183,10 +186,10 @@ public class ZombieBot implements world.ZombieBot {
                  world.setQuit(true); 
                 break;
             case "inventory":
-                 result.add(userItem.getInventoryHtml());
+                 result.add(userInventory.getInventoryHtml());
                  //html ggot
                  //Construct the inventory now
-               result.add(userItem.constructPlayerInventoryString());  
+               result.add(userInventory.constructPlayerInventoryString());  
                 break;
             case "blank":
                 result.add("I beg your pardon?");
@@ -195,7 +198,7 @@ public class ZombieBot implements world.ZombieBot {
                 break;
                 //DELETE THIS "test" 
             case "test":
-                   world.setUpNewRoom();
+                   result.add("No suitable test");
                 break; 
             default:
                 result.add("<b>That's not a verb I recognise.</b>");
