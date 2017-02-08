@@ -108,6 +108,11 @@ public class ZombieBot implements world.ZombieBot {
    
        return world.getCurrentRoom();
     }
+    //This method checks whether or not a new instance of room is re
+    public void newRoomInstance(){
+        
+        
+    }
     
     /**
      * process player commands
@@ -124,7 +129,7 @@ public class ZombieBot implements world.ZombieBot {
             case "info":
                 result.add(world.getInfo());
                 break;
-            case "look":                
+            case "look":           
                 //Some of this is done so stupidly because I didn't realise I could line break with BR I thought I had to invoke the add method to print across multiple lines 
                 result.add(world.displayRoomName(whatRoomAreWeIn()));
                //result.add(world.displayRoomDescription(whatRoomAreWeIn())); //do we actually need this part in

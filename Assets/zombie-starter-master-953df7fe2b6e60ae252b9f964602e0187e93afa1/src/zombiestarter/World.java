@@ -241,13 +241,35 @@ public class World {   //Private Variables Public class so anything can use the 
         return itemName;
     }
 
-    //This will check for a new room if so 
+    //This will check for a new room if so returns true if else returns false
     public boolean areWeInANewRoom(){
         boolean areWe = false; 
        //If we are in the start room 
        //The linkedList should be empty
-       
-        
-        return areWe;
+       if(roomNames.isEmpty() == true)
+       {
+           //Add the start room name to the list 
+           roomNames.add(start);
+           return true; 
+       }
+       else
+           //Check all elements of the roomName to find out if curRoomName is in it
+       {
+           for(int i = 0; i<=roomNames.size(); i++)
+           {
+            if(roomNames.get(i).equalsIgnoreCase(currentRoom))
+            {//The room is not new
+                return false;
+                //No break is required 
+            } else{
+                areWe = true;
+            }
+                
+           }
+           
+       }
+    return areWe; 
     }
+    
+
 }
