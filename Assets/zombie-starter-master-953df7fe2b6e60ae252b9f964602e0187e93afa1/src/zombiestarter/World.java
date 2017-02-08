@@ -1,7 +1,9 @@
 package zombiestarter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import world.WEntrance;
 import world.WRoom;
 import world.WorldLoader;
@@ -20,9 +22,11 @@ public class World {   //Private Variables Public class so anything can use the 
     private String currentRoom; //PLEASE ALWAYS UPDATE THIS VARIABLE WITH THE NAME (STRING) OF THE CURRENT ROOM WE ARE IN 
     private boolean startRan = false;
     private WorldLoader w1;
+   private Map<String, String> roomStatusHashMap = new HashMap<String, String>();
+
     //Constructor (THIS IS THE INFO WE USE TO CONSTRUCT THE CLASS * CALLTIME)
 
-    World(WorldLoader w1, String info, String startString, String start) {
+    World(WorldLoader w1, String info, String startString, String start ) {
 
         //this.info refers to the class attribute while = refers to the paramater
         //Basically this says the attribute = whatever is passed in through the paramater
@@ -240,7 +244,30 @@ public class World {   //Private Variables Public class so anything can use the 
 
         return itemName;
     }
+public void setUpNewRoom()
+{
+  boolean newRoom = areWeInANewRoom();  
+  String roomInfo = "";
+  if(newRoom == true)
+  {
+  roomInfo += " " +displayEntranceDirection(currentRoom);
+  roomInfo += " " +displayZombieCount(currentRoom);
+  //Create a list of the items in the specified room
+  List itemIndex = itemIndexInSpecRoom(currentRoom);
+  int noOfItems = itemIndex.size();
+for(int i =0; i< noOfItems; i++){
+    roomInfo += " " + displayItemName(currentRoom,i);
+    roomInfo += " " + displayItemResource(displayItemName(currentRoom,i));
+}
+ roomStatusHashMap.put(currentRoom, roomInfo);
+  }
+ 
+ 
+for (Map.Entry<String, String> entry : roomStatusHashMap.entrySet()) {
+    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+}
 
+}
     //This will check for a new room if so returns true if else returns false
     public boolean areWeInANewRoom(){
         boolean areWe = false; 
@@ -261,15 +288,39 @@ public class World {   //Private Variables Public class so anything can use the 
             {//The room is not new
                 return false;
                 //No break is required 
-            } else{
+            } else{             
                 areWe = true;
             }
                 
            }
            
        }
+       //Add the new room to the list 
+       if(areWe == true)
+       {
+           roomNames.add(currentRoom);
+       }
     return areWe; 
     }
     
-
+public String look(){
+    
+    String roomInfo = ""; 
+    String roomName = "";
+    for (Map.Entry<String, String> entry : roomStatusHashMap.entrySet()) {
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        if(currentRoom.equalsIgnoreCase(entry.getKey())) //If the room we want equals the key name            
+        {
+    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+    roomName = entry.getKey();
+    roomInfo = entry.getValue();
+        }
 }
+    System.out.println(roomName + " xxxxxx" +roomInfo+currentRoom);
+    return (roomName + " " +roomInfo);
+}
+}
+
+
+
+

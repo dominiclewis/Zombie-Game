@@ -13,6 +13,7 @@ package zombiestarter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  *
  * @author your details
@@ -108,11 +109,8 @@ public class ZombieBot implements world.ZombieBot {
    
        return world.getCurrentRoom();
     }
-    //This method checks whether or not a new instance of room is re
-    public void newRoomInstance(){
-        
-        
-    }
+    
+
     
     /**
      * process player commands
@@ -129,7 +127,8 @@ public class ZombieBot implements world.ZombieBot {
             case "info":
                 result.add(world.getInfo());
                 break;
-            case "look":           
+            case "look":      
+                
                 //Some of this is done so stupidly because I didn't realise I could line break with BR I thought I had to invoke the add method to print across multiple lines 
                 result.add(world.displayRoomName(whatRoomAreWeIn()));
                //result.add(world.displayRoomDescription(whatRoomAreWeIn())); //do we actually need this part in
@@ -150,7 +149,9 @@ public class ZombieBot implements world.ZombieBot {
                      //I know this is ugly but I think it works
                      result.add(world.displayItemResource(world.displayItemName(whatRoomAreWeIn(),i) ) );
                  }
-                 
+                   
+                world.setUpNewRoom();
+                 result.add(world.look());
                 
                  
                 break;
@@ -193,7 +194,7 @@ public class ZombieBot implements world.ZombieBot {
                 break;
                 //DELETE THIS "test" 
             case "test":
-                result.add("I just came to say hello Hello");
+                   world.setUpNewRoom();
                 break; 
             default:
                 result.add("<b>That's not a verb I recognise.</b>");
