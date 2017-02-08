@@ -20,7 +20,9 @@ import world.WEntrance;
 import world.WRoom;
 /**
  *
- * @author your details here
+ * @author Dominic Lewis
+ * 1.To do 
+ * ZombieBot line 173
  */
 public class ZombieStarter {    
 

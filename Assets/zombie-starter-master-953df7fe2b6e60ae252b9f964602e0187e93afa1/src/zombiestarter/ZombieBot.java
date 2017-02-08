@@ -169,7 +169,8 @@ public class ZombieBot implements world.ZombieBot {
             case "pickup":  
                 String item = cmds[1];
                 result.add(userInventory.pickUp(item));//Pass in the second paramater passed to cmds / entered 
-                
+               //Needs to remove the item from the hashmap , build a generic add & remove function for the hashmap remebering that it's a string 
+                //Maybe use scanner to parse it
                 
                 break;
             case "kill":
