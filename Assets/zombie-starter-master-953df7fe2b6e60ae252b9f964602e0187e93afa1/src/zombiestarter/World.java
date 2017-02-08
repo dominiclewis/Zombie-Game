@@ -277,6 +277,8 @@ for (Map.Entry<String, String> entry : roomStatusHashMap.entrySet()) {
        {
            //Add the start room name to the list 
            roomNames.add(start);
+           //set the current room to be the start room also
+           currentRoom = start;
            return true; 
        }
        else

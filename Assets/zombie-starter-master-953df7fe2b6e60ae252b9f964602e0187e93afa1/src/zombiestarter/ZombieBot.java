@@ -128,7 +128,7 @@ public class ZombieBot implements world.ZombieBot {
                 result.add(world.getInfo());
                 break;
             case "look":      
-                
+                /*
                 //Some of this is done so stupidly because I didn't realise I could line break with BR I thought I had to invoke the add method to print across multiple lines 
                 result.add(world.displayRoomName(whatRoomAreWeIn()));
                //result.add(world.displayRoomDescription(whatRoomAreWeIn())); //do we actually need this part in
@@ -149,6 +149,7 @@ public class ZombieBot implements world.ZombieBot {
                      //I know this is ugly but I think it works
                      result.add(world.displayItemResource(world.displayItemName(whatRoomAreWeIn(),i) ) );
                  }
+                */
                    
                 world.setUpNewRoom();
                  result.add(world.look());
