@@ -315,6 +315,9 @@ public String look(){
 }
     return (roomName + "<br>" +roomInfo);
 }
+
+
+//Load room up again but instead this time access the hash key and set eh value to be ecorrct
 }
 
 

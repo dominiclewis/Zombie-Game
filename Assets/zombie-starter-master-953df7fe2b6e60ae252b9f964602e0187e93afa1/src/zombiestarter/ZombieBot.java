@@ -12,7 +12,7 @@ package zombiestarter;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Scanner; 
 
 /**
  *
@@ -76,6 +76,16 @@ public class ZombieBot implements world.ZombieBot {
      */
     public boolean disableTimer() {
         return false;
+    }
+    
+    public void adjustWorld(){
+        String storage = "Can ? u DoTHe Tnagoal";
+        
+       Scanner scan = new Scanner(storage);
+        
+       while(scan.hasNext()){
+           System.out.println(scan.next());
+       }
     }
   //Checks if we're in the start room
     public boolean startRoomCheck(){
@@ -158,7 +168,8 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "move":
                 //Move the direction to the directionString
-                //Check if room is locked
+                //Check if room is locked 
+                adjustWorld();
                 boolean locked = true; 
                 
                 if (locked == false )
