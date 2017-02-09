@@ -43,6 +43,7 @@ public class Inventory {
        {
            if(itemX.equalsIgnoreCase(itemToRemove)) //if the name of the item equals what's been passed
            {
+               System.out.println(itemX);
             playerInventory.remove(itemX);
              hasItBeenRemoved = true; 
            }

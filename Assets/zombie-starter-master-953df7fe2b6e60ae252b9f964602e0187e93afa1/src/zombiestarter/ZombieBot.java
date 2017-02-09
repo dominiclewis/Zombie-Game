@@ -161,20 +161,21 @@ public class ZombieBot implements world.ZombieBot {
             case "move":
                 //Move the direction to the directionString
                 //Check if room is locked 
-                boolean locked = true; 
+                
                  
                 
-                if (locked == false )
+                if (world.isRoomLocked(whatRoomAreWeIn(),cmds[1]) == false ) //room is unlocked
                 {
-                world.setCurrentRoom(world.findEntranceName(whatRoomAreWeIn(),cmds[1]));
+                world.setCurrentRoom(world.findEntranceName(whatRoomAreWeIn(),cmds[1])); //move
                 } else 
                 {
                     
                    //Check for the key 
                    //If key is present
-                    if( ( userInventory.removeItemFromInventory("KEY") ) == true) // returns true if key is found and can be removed 
+                    if( ( userInventory.removeItemFromInventory("KEY") ) == true) // returns true if key is found and can be removed. If there is no key to be found then it returns false
                     {
                         world.removeItemFromRoom(whatRoomAreWeIn(),"Key");
+                        
                         world.unlockDoor(whatRoomAreWeIn(), cmds[1]);
                        
                        //key has been removed 
@@ -182,7 +183,7 @@ public class ZombieBot implements world.ZombieBot {
                        
                     }
                     else{ //The room is locked and the user has no key 
-                        result.add("<br>Locked!!!");
+                        result.add("<br>Door is Locked!");
                     }
                 }
                 

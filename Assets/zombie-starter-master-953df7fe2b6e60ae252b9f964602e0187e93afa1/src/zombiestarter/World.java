@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import world.WEntrance;
 import world.WRoom;
 import world.WorldLoader;
@@ -317,16 +319,53 @@ public String look(){
 }
 
 public boolean isRoomLocked(String roomName, String directionToUnlock){
-    boolean locked = false; 
+    boolean locked = false, tokeFound = false;
     //DirectionToUnlock is token 1 
-    
-    
+    Pattern lockedPat = Pattern.compile("^(Locked)(.)*");
+    Pattern unlockedPat = Pattern.compile ("^(Unlocked)(.)*");
+   // Pattern unlockedPat = Patter.compile()
+   
+
     //pull room from hashmap 
-    String temp;
+    String temp="",temp2="";
     String room = roomStatusHashMap.get(roomName);
         Scanner roomInfoScan = new Scanner(room);
+    //Scan through room until token one is found
     
-    
+    while(roomInfoScan.hasNext())
+    {
+        
+        temp2 = roomInfoScan.next(); //temp 2 exists so regex can be evaluated 
+        temp += temp2;
+        
+        temp+= " ";
+        
+        
+        if(temp.contains (directionToUnlock.toUpperCase()) || (temp.contains( ("(" + directionToUnlock.toUpperCase())  )) )
+        {
+            tokeFound = true;             
+            
+        }
+        
+        //One of these will be found
+         //regEx
+         Matcher matchLocked= lockedPat.matcher(temp2); //tries to match the locked pattern
+         Matcher matchUnlocked = unlockedPat.matcher(temp2); //tries to match unlocke pattern against temp
+      //  if (temp.matches("^(Locked)(.)*") && tokeFound == true){        
+         if (matchLocked.find() && tokeFound == true){ //finds if the matchLocked matcher can find the patter
+            //room is locked
+             System.out.println("LOCKEd");
+            return true; 
+        } else if (matchUnlocked.find() && tokeFound == true) 
+        {
+            System.out.println("UNLOCKED");
+            //room is unlocked 
+            return false; 
+        }
+        
+    }
+  
+    System.out.println("isRoomLocked should never get here ");
  return locked;   
 }
 
@@ -386,7 +425,7 @@ public boolean unlockDoor(String roomName, String directionToUnlock)
 public boolean removeItemFromRoom(String roomName,String itemToRemove){
     boolean successful = false; 
    String roomInfo = "";
-  
+    System.out.println("we here tho");
   roomInfo += " " +displayEntranceDirection(roomName);
   roomInfo += " " +displayZombieCount(roomName) +"<br>";
   //Create a list of the items in the specified room
