@@ -35,7 +35,7 @@ public class Inventory {
         return inventoryHtml; 
     }
     //Returns true if item can be removed, otherwise remove
-    public boolean removeItem(String itemToRemove){
+    public boolean removeItemFromInventory(String itemToRemove){
        boolean hasItBeenRemoved = false;
        
        //check inventory for name 

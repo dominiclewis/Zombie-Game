@@ -78,15 +78,7 @@ public class ZombieBot implements world.ZombieBot {
         return false;
     }
     
-    public void adjustWorld(){
-        String storage = "Can ? u DoTHe Tnagoal";
-        
-       Scanner scan = new Scanner(storage);
-        
-       while(scan.hasNext()){
-           System.out.println(scan.next());
-       }
-    }
+    
   //Checks if we're in the start room
     public boolean startRoomCheck(){
            //if this is the first time we are setting the current room 
@@ -169,8 +161,8 @@ public class ZombieBot implements world.ZombieBot {
             case "move":
                 //Move the direction to the directionString
                 //Check if room is locked 
-                adjustWorld();
                 boolean locked = true; 
+                 
                 
                 if (locked == false )
                 {
@@ -180,8 +172,11 @@ public class ZombieBot implements world.ZombieBot {
                     
                    //Check for the key 
                    //If key is present
-                    if( ( userInventory.removeItem("KEY") ) == true) // returns true if key is found and can be removed 
+                    if( ( userInventory.removeItemFromInventory("KEY") ) == true) // returns true if key is found and can be removed 
                     {
+                        world.removeItemFromRoom(whatRoomAreWeIn(),"Key");
+                        world.unlockDoor(whatRoomAreWeIn(), cmds[1]);
+                       
                        //key has been removed 
                        //change the room status to  
                        

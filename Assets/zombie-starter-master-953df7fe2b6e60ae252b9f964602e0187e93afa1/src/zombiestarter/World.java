@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import world.WEntrance;
 import world.WRoom;
 import world.WorldLoader;
@@ -306,7 +307,6 @@ public String look(){
     String roomName = "";
     //Loop throught the hash
     for (Map.Entry<String, String> entry : roomStatusHashMap.entrySet()) {
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
         if(currentRoom.equalsIgnoreCase(entry.getKey())) //If the room we want equals the key name            
         {
     roomName = entry.getKey();
@@ -316,7 +316,103 @@ public String look(){
     return (roomName + "<br>" +roomInfo);
 }
 
+public boolean isRoomLocked(String roomName, String directionToUnlock){
+    boolean locked = false; 
+    //DirectionToUnlock is token 1 
+    
+    
+    //pull room from hashmap 
+    String temp;
+    String room = roomStatusHashMap.get(roomName);
+        Scanner roomInfoScan = new Scanner(room);
+    
+    
+ return locked;   
+}
 
+public boolean unlockDoor(String roomName, String directionToUnlock)
+{
+        boolean successful = false; 
+   String roomInfo = "";
+  //If displayEntranceDirection outputs the direction we want then alter it's locked state
+  
+  
+     //displayEntranceDirection(roomName).equalsIgnoreCase(directionToUnlock) 
+     Scanner scan = new Scanner(displayEntranceDirection(roomName));
+    String token1 = directionToUnlock.toUpperCase(),token2 = "locked";
+    String temp="";
+    boolean foundDirectionRef = false; 
+    System.out.println("01");
+    while(scan.hasNext())
+    { 
+        
+          
+        temp += scan.next();
+        
+        if(temp.equalsIgnoreCase(token1))
+        {
+            foundDirectionRef = true;
+        }
+        //found the locked
+        if((temp.equalsIgnoreCase(token2) && foundDirectionRef == true)) //the first time this is true should be the correct instance
+        {
+         temp.replace(token2, "unlocked");
+         roomInfo += temp;
+         break;
+        }
+        roomInfo +=temp; 
+    }
+    System.out.println(roomInfo);
+     
+  {
+        roomInfo += " " +displayEntranceDirection(roomName);
+  }
+  roomInfo += " " +displayZombieCount(roomName) +"<br>";
+  //Create a list of the items in the specified room
+  List itemIndex = itemIndexInSpecRoom(roomName);
+     int noOfItems = itemIndex.size();
+    
+   for(int i =0; i< noOfItems; i++){
+                 
+    roomInfo += " " + displayItemName(roomName,i);
+    roomInfo += " " + displayItemResource(displayItemName(roomName,i));
+   }
+   
+   //hashmap needs updating here
+    System.out.println(roomInfo);
+   
+   return successful;
+}
+public boolean removeItemFromRoom(String roomName,String itemToRemove){
+    boolean successful = false; 
+   String roomInfo = "";
+  
+  roomInfo += " " +displayEntranceDirection(roomName);
+  roomInfo += " " +displayZombieCount(roomName) +"<br>";
+  //Create a list of the items in the specified room
+  List itemIndex = itemIndexInSpecRoom(roomName);
+    //Items
+    int noOfItems = itemIndex.size();
+    
+   for(int i =0; i< noOfItems; i++){
+       //if it's the item we want
+       if(itemToRemove.equalsIgnoreCase(displayItemName(roomName,i)))
+       {
+           successful = true;
+       //ignore it
+       }else{ 
+           //add the remaining items
+    roomInfo += " " + displayItemName(roomName,i);
+    roomInfo += " " + displayItemResource(displayItemName(roomName,i));
+    
+
+} 
+ 
+}
+   //add it to the hash map 
+   roomStatusHashMap.replace(roomName, roomInfo);
+   return successful;
+}
 //Load room up again but instead this time access the hash key and set eh value to be ecorrct
 }
 
