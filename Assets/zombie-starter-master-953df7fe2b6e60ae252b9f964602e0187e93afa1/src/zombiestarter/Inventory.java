@@ -34,6 +34,22 @@ public class Inventory {
         
         return inventoryHtml; 
     }
+    //Returns true if item can be removed, otherwise remove
+    public boolean removeItem(String itemToRemove){
+       boolean hasItBeenRemoved = false;
+       
+       //check inventory for name 
+       for(String itemX : playerInventory)
+       {
+           if(itemX.equalsIgnoreCase(itemToRemove)) //if the name of the item equals what's been passed
+           {
+            playerInventory.remove(itemX);
+             hasItBeenRemoved = true; 
+           }
+           
+       }
+       return hasItBeenRemoved;  
+    }
     //this method adds the(STRING) name of an item to be added to the attribute array of the players inventory 
 public String pickUp(String itemNameToPickUp){
     //This needs to validated 

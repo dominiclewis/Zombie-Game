@@ -158,7 +158,29 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "move":
                 //Move the direction to the directionString
+                //Check if room is locked
+                boolean locked = true; 
+                
+                if (locked == false )
+                {
                 world.setCurrentRoom(world.findEntranceName(whatRoomAreWeIn(),cmds[1]));
+                } else 
+                {
+                    
+                   //Check for the key 
+                   //If key is present
+                    if( ( userInventory.removeItem("KEY") ) == true) // returns true if key is found and can be removed 
+                    {
+                       //key has been removed 
+                       //change the room status to  
+                       
+                    }
+                    else{ //The room is locked and the user has no key 
+                        result.add("<br>Locked!!!");
+                    }
+                }
+                
+                
                 //Try to access the room 
                 
                 //MOVE DIRECTION(NE,SE etc)
