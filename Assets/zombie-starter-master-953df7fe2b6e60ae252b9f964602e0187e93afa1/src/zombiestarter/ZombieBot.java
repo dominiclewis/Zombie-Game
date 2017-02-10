@@ -41,7 +41,7 @@ public class ZombieBot implements world.ZombieBot {
      */
     @Override
     public String begin() {
-        return "this is the message that gets displayed when game begins";
+        return world.getStartHTML();
     }
     
     /**
@@ -106,8 +106,7 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "quit":
                    world.setQuit(true);
-                   
-                
+
                 break;
             case "inventory":
                 result.add("handle inventory command");
@@ -117,6 +116,9 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "":
                 break;
+            case "test":
+                
+                break; 
             default:
                 result.add("<b>That's not a verb I recognise.</b>");
         }

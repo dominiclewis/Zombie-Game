@@ -24,10 +24,11 @@ int zombieCount;
 List<String> entranceDirection = new ArrayList<>();
 List<String> leadsTo = new ArrayList<>();
 List<Boolean> locked = new ArrayList<>();
-
+int numRooms = entranceDirection.size();
 //Indexes should be shared/corresponding
 List<String> itemName = new ArrayList<>();
 List<String> itemHtml = new ArrayList<>(); 
+int numItems = itemName.size();
 
 
     public Room(String roomName, String roomDescription,int zombieCount, 
@@ -42,6 +43,14 @@ List<String> itemHtml = new ArrayList<>();
         this.itemName = itemName;
         this.itemHtml = itemHtml; 
         
+    }
+
+    public int getNumRooms() {
+        return numRooms;
+    }
+
+    public int getNumItems() {
+        return numItems;
     }
 
     public String getRoomName() {
@@ -108,11 +117,52 @@ List<String> itemHtml = new ArrayList<>();
         this.itemHtml = itemHtml;
     }
 
- 
-
-    Room(){
-       
-   }
-
+    //LOOK
+    public String Look(){
+        String toReturn ="Room Name: ";
+        
+         String name = getRoomName();
+         toReturn += name;
+         toReturn+="<br>Zombies: "; //Space
+         int numZombies = getZombieCount();
+         toReturn += (Integer.toString(numZombies));//Turn numOfZombies to a String
+         
+         //Loop
+         for(int i = 0; i< getNumRooms(); i++)
+         {     
+         String entrance = entranceDirection.get(i); //accessing directly as local to method
+         toReturn += ("<br>" + entrance);
+         //Space
+         String roomLedTo = leadsTo.get(i);
+         toReturn += (" leads to " + roomLedTo);
+         //Space
+         Boolean isRoomLocked = locked.get(i);
+         if(isRoomLocked == true){
+             toReturn+= (" is locked" +isRoomLocked);
+         } else{
+             toReturn+= (" isn't locked" +isRoomLocked);
+         }
+         
+          //BR?
+         }
+         //Items 
+         //Loop
+         toReturn+="<br>Items<br>";
+         for(int i =0; i<numItems; i++)
+         {
+         String itemNameString = itemName.get(i);
+         toReturn += itemNameString;
+         //Space
+         toReturn += "< ";
+         String itemHtmlString = itemHtml.get(i);
+         toReturn += itemHtmlString;
+         toReturn += "  ";
+         //BR
+        }
+         
+        
+        System.out.println(toReturn);
+        return toReturn; 
+    }
     
 }
