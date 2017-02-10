@@ -26,14 +26,14 @@ List<String> leadsTo = new ArrayList<>();
 List<Boolean> locked = new ArrayList<>();
 int numRooms = entranceDirection.size();
 //Indexes should be shared/corresponding
-List<String> itemName = new ArrayList<>();
+List itemName = new ArrayList<>();
 List<String> itemHtml = new ArrayList<>(); 
 int numItems = itemName.size();
 
 
     public Room(String roomName, String roomDescription,int zombieCount, 
             List<String> entranceDirection, List <String> leadsTo, List <Boolean> locked,
-            List <String> itemName, List<String> itemHtml) {
+            List itemName, List<String> itemHtml) {
         this.roomName = roomName;
         this.roomDescription = roomDescription;
         this.zombieCount = zombieCount;
@@ -105,7 +105,7 @@ int numItems = itemName.size();
         return itemName;
     }
 
-    public void setItemName(List<String> itemName) {
+    public void setItemName(List itemName) {
         this.itemName = itemName;
     }
 
@@ -130,6 +130,7 @@ int numItems = itemName.size();
          //Loop
          for(int i = 0; i< getNumRooms(); i++)
          {     
+             
          String entrance = entranceDirection.get(i); //accessing directly as local to method
          toReturn += ("<br>" + entrance);
          //Space
@@ -150,7 +151,7 @@ int numItems = itemName.size();
          toReturn+="<br>Items<br>";
          for(int i =0; i<numItems; i++)
          {
-         String itemNameString = itemName.get(i);
+         String itemNameString = (String)itemName.get(i);
          toReturn += itemNameString;
          //Space
          toReturn += "< ";

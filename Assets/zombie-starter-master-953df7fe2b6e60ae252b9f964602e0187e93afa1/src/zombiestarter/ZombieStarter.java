@@ -58,7 +58,7 @@ public class ZombieStarter {
                 List<String> entranceDirection = new ArrayList<>();
                 List<String> leadsTo = new ArrayList<>();
                 List<Boolean> locked = new ArrayList<>();
-
+                
                 //Now attempt to get entrances
                 if (room.getEntrances().size() > 0) {
                     //multiple for each room so can be declared local to for loop not nested however
@@ -67,21 +67,42 @@ public class ZombieStarter {
                         entranceDirection.add(entrance.getDirection());
                         leadsTo.add(entrance.getTo());
                         locked.add(entrance.isLocked());
-
+                          System.out.println(entrance.getDirection());
+                          System.out.println(entrance.getTo());
+                          
                     }
+                    
+                    
                     }//end if
-                    //These are for below 
-                    List<String> itemName = new ArrayList<>();
-                    List<String> itemHtml = new ArrayList<>();
+                    
+                //Items 
+                List itemName = new ArrayList<>();
+                List<String> itemHtml = new ArrayList<>();
 
-                    //Get the items from the room
-                    for (WItem item : w1.getItems()) {
-                          itemName.add(item.getName());
-                          itemHtml.add(item.getHtml());
+                for (WRoom roomVar : w1) {
+
+                    if (roomVar.getName().equalsIgnoreCase(name))  { 
+                        //The room is the currentRoom
+
+                        itemName.add(roomVar.getItems()); //works
+                        
+                        itemHtml.add(w1.getInventoryHtml());
+                        System.out.println(itemName);
                     }
-                    //This might be wrong so check when your not dead
+                }
 
-                
+//
+//                    //Get the items from the room
+//                    for (WItem item : w1.getItems()) {
+//                          itemName.add(item.getName());
+//                          itemHtml.add(item.getHtml());
+//                                  System.out.println(item.getName());
+//                                  
+//                    }
+//                    //This might be wrong so check when your not dead
+//
+//                      System.out.println("room check");
+//                
                 //STORE ALL THE INFO ABOUT THE ROOM THEN PASS IT IN
                 
                 roomList.add(new Room(name,description,zombieCount,entranceDirection

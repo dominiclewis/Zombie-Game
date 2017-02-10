@@ -117,6 +117,8 @@ public class ZombieBot implements world.ZombieBot {
             case "":
                 break;
             case "test":
+                Room temp = roomList.get(2);
+                result.add(temp.Look());
                 
                 break; 
             default:
