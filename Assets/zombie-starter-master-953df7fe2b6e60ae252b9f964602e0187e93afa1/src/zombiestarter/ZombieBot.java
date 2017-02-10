@@ -16,9 +16,13 @@ import java.util.List;
 public class ZombieBot implements world.ZombieBot {
     
     private World world; 
+    private List<Room> roomList;
+    private List<String> roomName;
     
-    ZombieBot(World world) {
+    ZombieBot(World world, List<Room> roomList, List<String> roomName ) {
       this.world = world; 
+      this.roomList = roomList;
+      this.roomName = roomName; 
     }
     
     /**
