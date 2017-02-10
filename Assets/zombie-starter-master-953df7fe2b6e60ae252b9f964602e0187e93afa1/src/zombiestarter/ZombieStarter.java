@@ -40,7 +40,8 @@ public class ZombieStarter {
             WorldLoader w1 = new WorldLoader();  //Create new instance of the WorldLoader class *Load the Json file 
 
             World world = new World(w1.getInfo(), w1.getStart(), w1.getEnd(), w1.getStartHtml(), w1.getItems(), w1.getInventoryHtml()); //Inside the worldLoader class to access the getInfo method //WORLD ONLY IS USED TO STORE worldloader stuff
-
+            List <String> roomName = new ArrayList<String>(); //This will be used to store the roomNames 
+            //It will be passed to world to use the indexes etc..
             List<Room> roomList = new ArrayList<Room>();
             //Load rooms instances up inside this array 
 
@@ -48,6 +49,8 @@ public class ZombieStarter {
             //This loop should cycle over every room *Hopefully*
             for (WRoom room : w1) {
                 String name = room.getName();
+                roomName.add(name); //For indexes
+                
                 String description = room.getDescription();
                 int zombieCount = room.getZombieCount();
 
@@ -80,6 +83,7 @@ public class ZombieStarter {
 
                 
                 //STORE ALL THE INFO ABOUT THE ROOM THEN PASS IT IN
+                
                 roomList.add(new Room(name,description,zombieCount,entranceDirection
                 ,leadsTo , locked ,itemName, itemHtml ));
 

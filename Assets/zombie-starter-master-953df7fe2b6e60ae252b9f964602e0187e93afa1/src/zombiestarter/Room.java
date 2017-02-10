@@ -44,6 +44,70 @@ List<String> itemHtml = new ArrayList<>();
         
     }
 
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public String getRoomDescription() {
+        return roomDescription;
+    }
+
+    public void setRoomDescription(String roomDescription) {
+        this.roomDescription = roomDescription;
+    }
+
+    public int getZombieCount() {
+        return zombieCount;
+    }
+
+    public void setZombieCount(int zombieCount) {
+        this.zombieCount = zombieCount;
+    }
+
+    public List<String> getEntranceDirection() {
+        return entranceDirection;
+    }
+
+    public void setEntranceDirection(List<String> entranceDirection) {
+        this.entranceDirection = entranceDirection;
+    }
+
+    public List<String> getLeadsTo() {
+        return leadsTo;
+    }
+
+    public void setLeadsTo(List<String> leadsTo) {
+        this.leadsTo = leadsTo;
+    }
+
+    public List<Boolean> getLocked() {
+        return locked;
+    }
+
+    public void setLocked(List<Boolean> locked) {
+        this.locked = locked;
+    }
+
+    public List<String> getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(List<String> itemName) {
+        this.itemName = itemName;
+    }
+
+    public List<String> getItemHtml() {
+        return itemHtml;
+    }
+
+    public void setItemHtml(List<String> itemHtml) {
+        this.itemHtml = itemHtml;
+    }
+
  
 
     Room(){
