@@ -25,6 +25,7 @@ public class World {
     private List <WItem> items;
     private String inventoryHtml;
     private Iterator WRoomIterator; 
+
     //Contructor
     World(String info,String start, String end,String startHTML,List<WItem> items,String inventoryHtml,Iterator WRoomIterator) {
         this.info = info; //assign info to paramater
@@ -65,6 +66,25 @@ public class World {
 //RETURNS INFO STRING
     public String getInfo() {
         return info;
+    }
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public void setItems(List<WItem> items) {
+        this.items = items;
+    }
+
+    public void setInventoryHtml(String inventoryHtml) {
+        this.inventoryHtml = inventoryHtml;
+    }
+
+    public void setWRoomIterator(Iterator WRoomIterator) {
+        this.WRoomIterator = WRoomIterator;
     }
 
 }
