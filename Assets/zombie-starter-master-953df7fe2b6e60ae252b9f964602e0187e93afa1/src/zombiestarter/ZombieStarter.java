@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ZombieServer;
+import world.WEntrance;
 import world.WRoom;
 import world.WorldLoader;
 
@@ -44,10 +45,25 @@ public class ZombieStarter {
              
              List<Room> roomList = new ArrayList<Room>();
              //Load rooms instances up inside this array 
-            for (WRoom everyRoom : w1)
+             
+             //This loop should cycle over every room *Hopefully*
+            for (WRoom room : w1)
             {
+                String name = room.getName();
+                String description = room.getDescription();
+                int zombieCount = room.getZombieCount();
                 
-                //This loop should cycle over every room *Hopefully*
+                //This is for below
+                List<String> entrances = new ArrayList<>();
+                List<Boolean> locked = new ArrayList<>();
+               
+                //Now attempt to get entrances
+                //multiple for each room so can be declared local to for loop not nested however
+                      for (WEntrance entrance : room.getEntrances()) //WROOMs get entrance method requires a list of WEntrances which is why it's the datatype
+                      {
+                         
+                          
+                      }
                //STORE ALL THE INFO ABOUT THE ROOM THEN PASS IT IN
                 roomList.add(new Room());
                 

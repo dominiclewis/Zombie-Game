@@ -27,6 +27,7 @@ public class World {
     private String startHTML; 
     private List <WItem> items;
     private String inventoryHtml;
+    
     //Contructor
     World(String info,String start, String end,String startHTML,List<WItem> items,String inventoryHtml) {
         this.info = info; //assign info to paramater
