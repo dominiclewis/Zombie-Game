@@ -27,6 +27,7 @@ public class World {
     private String startHTML; 
     private List <WItem> items;
     private String inventoryHtml;
+    private String currentRoom; //This string will store the current room 
     
     //Contructor
     World(String info,String start, String end,String startHTML,List<WItem> items,String inventoryHtml) {
@@ -37,6 +38,15 @@ public class World {
         this.items = items;
         this.inventoryHtml = inventoryHtml;
    
+    }
+    
+    public String getCurrentRoom(){
+        
+        return currentRoom;
+    }
+    public void setCurrentRoom(String currentRoomUpdate)
+    {
+     this.currentRoom = currentRoomUpdate;
     }
     //START STRING
     public String getStart() {

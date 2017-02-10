@@ -110,11 +110,11 @@ List<String> itemHtml = new ArrayList<>();
     }
     public int numRooms()
     {
-        System.out.println(entranceDirection.size());
+        
         return entranceDirection.size();
     }
     public int numItems(){
-        System.out.println(itemName.size());
+        
         return itemName.size();
     }
     //LOOK
@@ -134,7 +134,7 @@ List<String> itemHtml = new ArrayList<>();
          {     
              
          String entrance = entranceDirection.get(i); //accessing directly as local to method
-             System.out.println("Entrance test"+ entrance);
+        
          toReturn += ("<br>" + entrance);
          //Space
          String roomLedTo = leadsTo.get(i);
@@ -142,7 +142,7 @@ List<String> itemHtml = new ArrayList<>();
          //Space
          Boolean isRoomLocked = locked.get(i);
          if(isRoomLocked == true){
-             toReturn+= (" : Locked!");
+             toReturn+= (": Locked!");
          } else{
              toReturn+= (": Unlocked" );
          }
@@ -165,7 +165,7 @@ List<String> itemHtml = new ArrayList<>();
         }
          
         
-        System.out.println(toReturn);
+        
         return toReturn; 
     }
     

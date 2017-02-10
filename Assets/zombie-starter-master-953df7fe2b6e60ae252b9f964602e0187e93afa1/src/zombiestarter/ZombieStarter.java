@@ -41,7 +41,10 @@ public class ZombieStarter {
             WorldLoader w1 = new WorldLoader();  //Create new instance of the WorldLoader class *Load the Json file 
 
             World world = new World(w1.getInfo(), w1.getStart(), w1.getEnd(), w1.getStartHtml(), w1.getItems(), w1.getInventoryHtml()); //Inside the worldLoader class to access the getInfo method //WORLD ONLY IS USED TO STORE worldloader stuff
-            List <String> roomName = new ArrayList<String>(); //This will be used to store the roomNames 
+            //Set the currentRoom 
+            world.setCurrentRoom(world.getStart());
+
+            List<String> roomName = new ArrayList<String>(); //This will be used to store the roomNames 
             //It will be passed to world to use the indexes etc..
             List<Room> roomList = new ArrayList<Room>();
             //Load rooms instances up inside this array 
@@ -51,7 +54,7 @@ public class ZombieStarter {
             for (WRoom room : w1) {
                 String name = room.getName();
                 roomName.add(name); //For indexes
-                
+
                 String description = room.getDescription();
                 int zombieCount = room.getZombieCount();
 
@@ -59,7 +62,7 @@ public class ZombieStarter {
                 List<String> entranceDirection = new ArrayList<>();
                 List<String> leadsTo = new ArrayList<>();
                 List<Boolean> locked = new ArrayList<>();
-                
+
                 //Now attempt to get entrances
                 if (room.getEntrances().size() > 0) {
                     //multiple for each room so can be declared local to for loop not nested however
@@ -68,48 +71,41 @@ public class ZombieStarter {
                         entranceDirection.add(entrance.getDirection());
                         leadsTo.add(entrance.getTo());
                         locked.add(entrance.isLocked());
-                        
-                          
+
                     }
-                    
-                    
-                    }//end if
-                    
+
+                }//end if
+
                 //Items 
                 List itemName = new ArrayList<>();
                 List<String> itemHtml = new ArrayList<>();
 
                 for (WRoom roomVar : w1) {
-                    
 
-                    if (roomVar.getName().equalsIgnoreCase(name))  { 
+                    if (roomVar.getName().equalsIgnoreCase(name)) {
                         //The room is the currentRoom
                         //Scanner reads the items that are contained in the currentRoom
-                         Scanner scan = new Scanner(roomVar.getItems().toString());
-                         //Loop scanner
-                       while(scan.hasNext())
-                       {
-                           String temp = scan.next();
-                           //Start scrolling through all the items in the game
-                        for (WItem item : w1.getItems()) {
-                            //if the string in the room(temp) matches the the name of the item then add it get it's name
-                            if(temp.contains(item.getName()))
-                            {
-                          itemName.add(item.getName());
-                                
-                          itemHtml.add(item.getHtml());
-                                
-                                  
+                        Scanner scan = new Scanner(roomVar.getItems().toString());
+                        //Loop scanner
+                        while (scan.hasNext()) {
+                            String temp = scan.next();
+                            //Start scrolling through all the items in the game
+                            for (WItem item : w1.getItems()) {
+                                //if the string in the room(temp) matches the the name of the item then add it get it's name
+                                if (temp.contains(item.getName())) {
+                                    itemName.add(item.getName());
+
+                                    itemHtml.add(item.getHtml());
+
+                                }
+
                             }
-                                  
-                    }
-                       }
+                        }
 
                     }
                 }
-                
-                roomList.add(new Room(name,description,zombieCount,entranceDirection
-                ,leadsTo , locked ,itemName, itemHtml ));
+
+                roomList.add(new Room(name, description, zombieCount, entranceDirection, leadsTo, locked, itemName, itemHtml));
 
             }
 //           
@@ -125,7 +121,7 @@ public class ZombieStarter {
                     // which allows the address to then be typed into client.
                     ip.getHostAddress(),
                     8085,
-                    new ZombieBot(world,roomList,roomName));
+                    new ZombieBot(world, roomList, roomName));
         } catch (UnknownHostException ex) {
             Logger.getLogger(
                     ZombieStarter.class.getName()).log(Level.SEVERE, null, ex);

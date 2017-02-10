@@ -87,7 +87,7 @@ public class ZombieBot implements world.ZombieBot {
                 result.add(world.getInfo());
                 break;
             case "look":
-                result.add("handle look command");
+                result.add(roomList.get(findRoomIndex()).Look()); //Looks at the current room
                 break;
             case "move":
                 result.add("handle move command");
@@ -117,8 +117,8 @@ public class ZombieBot implements world.ZombieBot {
             case "":
                 break;
             case "test":
-                Room temp = roomList.get(2);
-                result.add(temp.Look());
+                //Room temp = roomList.get(2);
+                //result.add(temp.Look());
                 
                 break; 
             default:
@@ -127,4 +127,22 @@ public class ZombieBot implements world.ZombieBot {
         
         return result;
      }
+    
+    
+    public int findRoomIndex(){
+        int roomIndex = 0; 
+        for(String room: roomName){
+           
+            if(room.equalsIgnoreCase(world.getCurrentRoom())) 
+            {
+            //if the name of the room in the RoomName is the same as the currentRoom then we have the index 
+            //So end loop
+            break; 
+            }
+            roomIndex++;
+        }
+        
+        
+    return roomIndex;     
+    }
 }
