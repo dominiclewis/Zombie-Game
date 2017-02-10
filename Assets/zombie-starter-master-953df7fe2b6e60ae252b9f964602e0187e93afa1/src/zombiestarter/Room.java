@@ -24,11 +24,10 @@ int zombieCount;
 List<String> entranceDirection = new ArrayList<>();
 List<String> leadsTo = new ArrayList<>();
 List<Boolean> locked = new ArrayList<>();
-int numRooms = entranceDirection.size();
 //Indexes should be shared/corresponding
 List<String> itemName = new ArrayList<>();
 List<String> itemHtml = new ArrayList<>(); 
-int numItems = itemName.size();
+
 
 
     public Room(String roomName, String roomDescription,int zombieCount, 
@@ -45,13 +44,6 @@ int numItems = itemName.size();
         
     }
 
-    public int getNumRooms() {
-        return numRooms;
-    }
-
-    public int getNumItems() {
-        return numItems;
-    }
 
     public String getRoomName() {
         return roomName;
@@ -116,32 +108,43 @@ int numItems = itemName.size();
     public void setItemHtml(List<String> itemHtml) {
         this.itemHtml = itemHtml;
     }
-
+    public int numRooms()
+    {
+        System.out.println(entranceDirection.size());
+        return entranceDirection.size();
+    }
+    public int numItems(){
+        System.out.println(itemName.size());
+        return itemName.size();
+    }
     //LOOK
     public String Look(){
         String toReturn ="Room Name: ";
         
-         String name = getRoomName(); //workd
+         String name = getRoomName(); //works
+         String description = getRoomDescription();         
          toReturn += name;
-         toReturn+="<br>Zombies: "; //Space
+         toReturn += ("<br>Description: " + description);
+         toReturn+="<br>Zombies: "; //Space //Works
          int numZombies = getZombieCount();
          toReturn += (Integer.toString(numZombies));//Turn numOfZombies to a String
          
          //Loop
-         for(int i = 0; i< getNumRooms(); i++)
+         for(int i = 0; i< numRooms(); i++)
          {     
              
          String entrance = entranceDirection.get(i); //accessing directly as local to method
+             System.out.println("Entrance test"+ entrance);
          toReturn += ("<br>" + entrance);
          //Space
          String roomLedTo = leadsTo.get(i);
-         toReturn += (" leads to " + roomLedTo);
+         toReturn += (" : " + roomLedTo);
          //Space
          Boolean isRoomLocked = locked.get(i);
          if(isRoomLocked == true){
-             toReturn+= (" is locked" +isRoomLocked);
+             toReturn+= (" : Locked!");
          } else{
-             toReturn+= (" isn't locked" +isRoomLocked);
+             toReturn+= (": Unlocked" );
          }
          
           //BR?
@@ -149,12 +152,12 @@ int numItems = itemName.size();
          //Items 
          //Loop
          toReturn+="<br>Items<br>";
-         for(int i =0; i<numItems; i++)
+         for(int i =0; i< numItems(); i++)
          {
          String itemNameString = (String)itemName.get(i);
          toReturn += itemNameString;
          //Space
-         toReturn += "< ";
+         toReturn += " ";
          String itemHtmlString = itemHtml.get(i);
          toReturn += itemHtmlString;
          toReturn += "  ";
