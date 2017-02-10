@@ -9,6 +9,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ZombieServer;
@@ -67,8 +68,7 @@ public class ZombieStarter {
                         entranceDirection.add(entrance.getDirection());
                         leadsTo.add(entrance.getTo());
                         locked.add(entrance.isLocked());
-                          System.out.println(entrance.getDirection());
-                          System.out.println(entrance.getTo());
+                        
                           
                     }
                     
@@ -80,14 +80,36 @@ public class ZombieStarter {
                 List<String> itemHtml = new ArrayList<>();
 
                 for (WRoom roomVar : w1) {
+                    
 
                     if (roomVar.getName().equalsIgnoreCase(name))  { 
                         //The room is the currentRoom
-
-                        itemName.add(roomVar.getItems()); //works
+                        System.out.println("Room Name: "+ name);
                         
-                        itemHtml.add(w1.getInventoryHtml());
-                        System.out.println(itemName);
+                        //If item = scan.next(roomVar.getItems()
+                        //Add it to get items
+                         Scanner scan = new Scanner(roomVar.getItems().toString());
+                       while(scan.hasNext())
+                       {
+                           String temp = scan.next();
+                           
+                        for (WItem item : w1.getItems()) {
+                            
+                            if(temp.contains(item.getName()))
+                            {
+                          itemName.add(item.getName());
+                                System.out.println(item.getName());
+                          itemHtml.add(item.getHtml());
+                                System.out.println(item.getHtml());
+                                  
+                            }
+                                  
+                    }
+                       }
+                        //itemName.add(roomVar.getItems()); //works
+                        
+                        //itemHtml.add(roomVar.);
+                        System.out.println("");
                     }
                 }
 
