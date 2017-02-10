@@ -84,48 +84,29 @@ public class ZombieStarter {
 
                     if (roomVar.getName().equalsIgnoreCase(name))  { 
                         //The room is the currentRoom
-                        System.out.println("Room Name: "+ name);
-                        
-                        //If item = scan.next(roomVar.getItems()
-                        //Add it to get items
+                        //Scanner reads the items that are contained in the currentRoom
                          Scanner scan = new Scanner(roomVar.getItems().toString());
+                         //Loop scanner
                        while(scan.hasNext())
                        {
                            String temp = scan.next();
-                           
+                           //Start scrolling through all the items in the game
                         for (WItem item : w1.getItems()) {
-                            
+                            //if the string in the room(temp) matches the the name of the item then add it get it's name
                             if(temp.contains(item.getName()))
                             {
                           itemName.add(item.getName());
-                                System.out.println(item.getName());
+                                
                           itemHtml.add(item.getHtml());
-                                System.out.println(item.getHtml());
+                                
                                   
                             }
                                   
                     }
                        }
-                        //itemName.add(roomVar.getItems()); //works
-                        
-                        //itemHtml.add(roomVar.);
-                        System.out.println("");
+
                     }
                 }
-
-//
-//                    //Get the items from the room
-//                    for (WItem item : w1.getItems()) {
-//                          itemName.add(item.getName());
-//                          itemHtml.add(item.getHtml());
-//                                  System.out.println(item.getName());
-//                                  
-//                    }
-//                    //This might be wrong so check when your not dead
-//
-//                      System.out.println("room check");
-//                
-                //STORE ALL THE INFO ABOUT THE ROOM THEN PASS IT IN
                 
                 roomList.add(new Room(name,description,zombieCount,entranceDirection
                 ,leadsTo , locked ,itemName, itemHtml ));
