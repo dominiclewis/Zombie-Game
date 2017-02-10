@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ZombieServer;
+import world.WRoom;
 import world.WorldLoader;
 
 /**
@@ -39,19 +40,18 @@ public class ZombieStarter {
              World world = new World(w1.getInfo(),w1.getStart(),w1.getEnd(),w1.getStartHtml(),w1.getItems(),w1.getInventoryHtml()); //Inside the worldLoader class to access the getInfo method //WORLD ONLY IS USED TO STORE worldloader stuff
              
              
-             Room room = new Room(world);
+            
              
              List<Room> roomList = new ArrayList<Room>();
-             for(WEntrance room : w1)
-             {
-                 
-             }
-             
-//             List<Card> cardList = new ArrayList<Card>();
-//for (i = 0; i < MAX_CARD; i++) {
-//  cardList.add(new Card());
-  // or new Card(i) as the case may be
-}
+             //Load rooms instances up inside this array 
+            for (WRoom everyRoom : w1)
+            {
+                //This loop should cycle over every room *Hopefully*
+               //STORE ALL THE INFO ABOUT THE ROOM THEN PASS IT IN
+                roomList.add(new Room());
+                
+            }
+//           
 
             // create an instane of our server to commnicate with the
             // web frontend.
