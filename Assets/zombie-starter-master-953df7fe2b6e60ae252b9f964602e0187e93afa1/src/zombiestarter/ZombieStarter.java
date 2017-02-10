@@ -46,6 +46,7 @@ public class ZombieStarter {
              //Load rooms instances up inside this array 
             for (WRoom everyRoom : w1)
             {
+                
                 //This loop should cycle over every room *Hopefully*
                //STORE ALL THE INFO ABOUT THE ROOM THEN PASS IT IN
                 roomList.add(new Room());
