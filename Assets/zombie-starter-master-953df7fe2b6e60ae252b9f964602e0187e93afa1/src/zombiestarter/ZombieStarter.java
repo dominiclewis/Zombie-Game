@@ -7,29 +7,20 @@ package zombiestarter;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ZombieServer;
 import world.WorldLoader;
 
-
-import world.WEntrance; 
-import world.WRoom;
 /**
  *
- * @author Dominic Lewis
- * 1.To do 
- * ZombieBot line 173
+ * @author your details here
  */
-public class ZombieStarter {    
+public class ZombieStarter {
 
     /**
      * @param args the command line arguments
      */
-    
     public static void main(String[] args) {
         
         // use a try/catch block to handle the case when opening
@@ -43,18 +34,8 @@ public class ZombieStarter {
              
              WorldLoader w1 = new WorldLoader();  //Create new instance of the WorldLoader class *Load the Json file 
               
-             World world = new World(w1,w1.getInfo(),w1.getStartHtml(),w1.getStart()); //Inside the worldLoader class to access the methods inside
-             Inventory userItem = new Inventory(w1.getInventoryHtml(),w1.getItems()); //New Inventory object passed in the html for outputting the itesm
-  // lets display all the items that can be found in the world
-        //displayItems(w1.getItems());
-       
-        //Pass in the List<> from WorldLoader  
-     //  Inventory.displayItemsInRoom(w1.getItems());
-       
-        
-        // lets display all the rooms contained in the world
-          
-           
+             World world = new World(w1.getInfo()); //Inside the worldLoader class to access the getInfo method //WORLD ONLY IS USED TO STORE worldloader stuff
+             
             // create an instane of our server to commnicate with the
             // web frontend.
             InetAddress ip = ip = InetAddress.getLocalHost();
@@ -66,23 +47,11 @@ public class ZombieStarter {
                     // which allows the address to then be typed into client.
                     ip.getHostAddress(),
                     8085,
-                    new ZombieBot(world,userItem) // part of the zombie server constructor 
-            );
+                    new ZombieBot(world));
          } catch (UnknownHostException ex) {
             Logger.getLogger(
                     ZombieStarter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    /*
-    //Maybe for the constructors of WRoom, Witem and WEntrance we don't want to actually construct them but simply acess their getters and setters
-    public static void displayItems(List<WItem> items) {
-        System.out.println("The world contains the following some number of the items\n");
-        for (WItem item: items) {
-            System.out.println(item.getName() + " its HTML is " + item.getHtml());
-        }
-    }
-*/
     
-   
-     
 }
