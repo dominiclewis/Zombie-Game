@@ -55,7 +55,7 @@ public class World {
     }
     
     //Gets quit with param  
-    //QUIT
+    //QUIT FUNCTION
     public boolean getQuit() {
 
         return quit;
@@ -67,24 +67,22 @@ public class World {
     public String getInfo() {
         return info;
     }
-    public void setInfo(String info) {
-        this.info = info;
+    //QUIT ROOM
+    public boolean getQuitRoom() {
+        return quit;
     }
 
-    public void setEnd(String end) {
-        this.end = end;
+    public List<WItem> getItems() {
+        return items;
     }
 
-    public void setItems(List<WItem> items) {
-        this.items = items;
+    public String getInventoryHtml() {
+        return inventoryHtml;
     }
 
-    public void setInventoryHtml(String inventoryHtml) {
-        this.inventoryHtml = inventoryHtml;
+    public Iterator getWRoomIterator() {
+        return WRoomIterator;
     }
-
-    public void setWRoomIterator(Iterator WRoomIterator) {
-        this.WRoomIterator = WRoomIterator;
-    }
+    
 
 }
