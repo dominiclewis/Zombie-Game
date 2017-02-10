@@ -5,6 +5,7 @@
  */
 package zombiestarter;
 
+import java.util.Iterator;
 import java.util.List;
 import world.WItem;
 
@@ -23,14 +24,16 @@ public class World {
     private String startHTML; 
     private List <WItem> items;
     private String inventoryHtml;
+    private Iterator WRoomIterator; 
     //Contructor
-    World(String info,String start, String end,String startHTML,List<WItem> items,String inventoryHtml) {
+    World(String info,String start, String end,String startHTML,List<WItem> items,String inventoryHtml,Iterator WRoomIterator) {
         this.info = info; //assign info to paramater
         this.start = start;
         this.end = end;
         this.startHTML = startHTML;
         this.items = items;
         this.inventoryHtml = inventoryHtml;
+        this.WRoomIterator = WRoomIterator;
     }
     //START STRING
     public String getStart() {
