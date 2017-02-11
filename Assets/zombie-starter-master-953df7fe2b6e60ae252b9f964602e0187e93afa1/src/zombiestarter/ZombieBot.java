@@ -262,7 +262,7 @@ public class ZombieBot implements world.ZombieBot {
                 player.addToInventory(item, roomHtml.get(i));
                 //remove it from the room 
 
-                // roomList.get(findRoomIndex()).removeItemFromRoom(item);
+                 roomList.get(findRoomIndex()).removeItemFromRoom(item);
                 break; 
             } else {
                 System.out.println("test5");
