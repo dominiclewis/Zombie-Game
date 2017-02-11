@@ -182,6 +182,8 @@ public class ZombieBot implements world.ZombieBot {
             //try to remove a key
             if((player.removeItem("key")) == true){ //key sucesffuly removed 
                 canIMove = true;
+                //Change door to be unlocked
+                roomList.get(findRoomIndex()).setDoorToUnlocked(direction);
             }
             else{
                 noKey = true;

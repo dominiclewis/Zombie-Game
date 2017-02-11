@@ -199,4 +199,17 @@ List<String> itemHtml = new ArrayList<>();
      return roomInfo;   
     }
     
+    public void setDoorToUnlocked(String direction){
+         for(int i = 0; i< numRooms(); i++)
+         {
+             //Room 
+             if(entranceDirection.get(i).equalsIgnoreCase(direction)){
+               locked.set(i, false);
+                 System.out.println(locked.get(i));
+                 
+             }
+             
+             }
+    }
+    
 }
