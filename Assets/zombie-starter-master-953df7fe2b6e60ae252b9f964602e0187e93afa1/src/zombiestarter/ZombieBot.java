@@ -115,6 +115,11 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "pickup":  
                 result.add("handle pickup command");
+                //Check if item is in room
+                //If it is store it
+                //Store the html
+                //Remove it from the roomtem list along with the html
+                //Move it into the user inventory along with the html
                 break;
             case "kill":
                 result.add("handle kill command");
