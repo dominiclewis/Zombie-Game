@@ -182,7 +182,7 @@ List<String> itemHtml = new ArrayList<>();
              if(entranceDirection.get(i).equalsIgnoreCase(direction)){
                  roomInfo.add(0,leadsTo.get(i)); //0 element in arrayList
                  roomInfo.add(1, locked.get(i)); //1 element in the arrayList
-                 roomInfo.add(3,true);//This indicates that it was found
+                 roomInfo.add(2,true);//This indicates that it was found
                  found = true;
                  break;
              }    
@@ -192,7 +192,7 @@ List<String> itemHtml = new ArrayList<>();
          //if never found
          if(found == false )
          {
-             roomInfo.add(3,false); //Never found
+            //Never found leave empty!
          }
         
         

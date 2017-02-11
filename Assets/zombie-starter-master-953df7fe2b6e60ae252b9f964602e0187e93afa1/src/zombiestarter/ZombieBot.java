@@ -18,11 +18,12 @@ public class ZombieBot implements world.ZombieBot {
     private World world; 
     private List<Room> roomList;
     private List<String> roomName;
-    
-    ZombieBot(World world, List<Room> roomList, List<String> roomName ) {
+    private Player player;
+    ZombieBot(World world, List<Room> roomList, List<String> roomName, Player player ) {
       this.world = world; 
       this.roomList = roomList;
       this.roomName = roomName; 
+      this.player = player;
     }
     
     /**
@@ -82,7 +83,7 @@ public class ZombieBot implements world.ZombieBot {
         
         String[] cmds = cmd.split(" "); // split cmd by space
         
-        String userParam = cmds[1].toLowerCase(); //turns cmds entry to lowerCase 
+        
         
         switch(cmds[0].toLowerCase()) {
             case "info":
@@ -93,8 +94,24 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "move":
                 //Direction
-                
-                result.add("handle move command");
+                List roomInfo = canIMove(cmds[1]);
+                if(!roomInfo.isEmpty())
+                {
+                if(roomInfo.get(3).equals(true)) //if we can move
+                {
+                    world.setCurrentRoom(roomInfo.get(0).toString());
+                    result.add("Moved to " + (roomInfo.get(0).toString()));
+                }
+                else{
+                    if(roomInfo.get(4).equals(true))
+                    {
+                        result.add("You need a key to enter");
+                    } 
+                }
+                }
+                else{
+                    result.add("No such room!");
+                }
                 break;
             case "pickup":  
                 result.add("handle pickup command");
@@ -136,29 +153,55 @@ public class ZombieBot implements world.ZombieBot {
         String room = "No Room Found";
         int curRoomIndex = findRoomIndex();
         //Get a rooms info
-        //1. Name
-        //2. Is it locked
-        //3. Is it ever found
+        // IT IS NOW EMPTY IF IT'S NEVER FOUND 
+        //0. Name
+        //1. Is it locked
+        //2. Is it ever found
         List roomInfo = roomList.get(curRoomIndex).mapEntranceToRoomInfo(direction);
   
         return roomInfo; 
     }
     //CONTROLLS THE MOVE 
     //RETURNS IF POSSIBLE OR NOT
-    public boolean canIMove(String direction){
+    public List canIMove(String direction){
         boolean canIMove = false;
+        boolean noKey = false;
         //Find what Room I'm in
         List roomInfo = entranceToRoom(direction); //returns the roomInfo
         
-        if(roomInfo.get(3).equals(true))//Object comparison not primitive?
+        
+        if(!roomInfo.isEmpty()) //if room info isn't empty 
+        {
+        if(roomInfo.get(2).equals(true))//Object comparison not primitive?
         {
          canIMove = true;    
         } 
         
-        if(canIMove == false){
-            boolean doIHaveKey = false;
+        //If I can move due to finding the room but the rooms locked        
+        if( (canIMove == true) && (roomInfo.get(1).equals(true) ) )  {
+            //try to remove a key
+            if((player.removeItem("key")) == true){ //key sucesffuly removed 
+                canIMove = true;
+            }
+            else{
+                noKey = true;
+                canIMove = false; 
+            }
+        } 
+        else if ( (canIMove == true ) && (roomInfo.get(1).equals(false)))
+        {
+            //Door is not locked
+            canIMove = true;
         }
-        return canIMove; 
+        //add record 3 to match canIMove
+        roomInfo.add(3,canIMove);
+        //Add record 4 only if there's no key
+        if(noKey == true)
+        {
+            roomInfo.add(4,true);
+        }
+        }
+        return roomInfo;
     }
     //FINDS ROOM INDEX
     public int findRoomIndex(){
