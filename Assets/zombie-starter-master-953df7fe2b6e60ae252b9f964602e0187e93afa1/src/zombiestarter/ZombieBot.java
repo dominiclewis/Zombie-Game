@@ -115,11 +115,9 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "pickup":  
                 result.add("handle pickup command");
-                //Check if item is in room
-                //If it is store it
-                //Store the html
-                //Remove it from the roomtem list along with the html
-                //Move it into the user inventory along with the html
+                
+                boolean successful =pickUp(cmds[1].toLowerCase());
+              
                 break;
             case "kill":
                 result.add("handle kill command");
@@ -246,5 +244,27 @@ public class ZombieBot implements world.ZombieBot {
         
         
     return roomIndex;     
+    }
+    
+    public boolean pickUp(String item){
+        boolean successful = false;        
+          //Check if item is in room
+          //Get the lists
+          List<String> roomItems = roomList.get(findRoomIndex()).getItemName();
+          List<String> roomHtml = roomList.get(findRoomIndex()).getItemHtml();
+          //
+          //Vars for bellow loop
+          int i =0;  
+          boolean found = false;
+          for (String roomItem: roomItems)
+          {
+              
+              i++;
+          }
+                //If it is store it
+                //Store the html
+                //Remove it from the roomtem list along with the html
+                //Move it into the user inventory along with the html
+        return successful;
     }
 }
