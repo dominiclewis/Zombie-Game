@@ -204,7 +204,6 @@ List<String> itemHtml = new ArrayList<>();
              //Room 
              if(entranceDirection.get(i).equalsIgnoreCase(direction)){
                locked.set(i, false);
-                 System.out.println(locked.get(i));
                  
              }
              

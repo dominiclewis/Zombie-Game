@@ -243,34 +243,31 @@ public class ZombieBot implements world.ZombieBot {
         //Check if item is in room
         //Get the lists
         List<String> roomItems = roomList.get(findRoomIndex()).getItemName();
-        System.out.println("test1");
         List<String> roomHtml = roomList.get(findRoomIndex()).getItemHtml();
-        System.out.println("test2");
-//
         //Vars for below loop
         int i = 0;
         boolean found = false;
         for (String roomItem : roomItems) {
             System.out.println(roomItem);
-            System.out.println("test3");
+            
             //Loop through items and find match if possible
 
             if (roomItem.equalsIgnoreCase(item)) {
                 
                 found = true;
-                System.out.println("XOOXXO");
+            
                 player.addToInventory(item, roomHtml.get(i));
                 //remove it from the room 
 
                  roomList.get(findRoomIndex()).removeItemFromRoom(item);
                 break; 
             } else {
-                System.out.println("test5");
+                
                 i++;
             }
         }
 
-        System.out.println("x");
+        
         //If it is store it
         //Store the html
         //Remove it from the roomtem list along with the html
