@@ -169,4 +169,34 @@ List<String> itemHtml = new ArrayList<>();
         return toReturn; 
     }
     
+    
+    public List mapEntranceToRoomInfo(String direction){
+        List roomInfo = new ArrayList();
+        
+        boolean found = false; 
+        
+        //Loop through room till found
+         for(int i = 0; i< numRooms(); i++)
+         {
+             //Room found
+             if(entranceDirection.get(i).equalsIgnoreCase(direction)){
+                 roomInfo.add(0,leadsTo.get(i)); //0 element in arrayList
+                 roomInfo.add(1, locked.get(i)); //1 element in the arrayList
+                 roomInfo.add(3,true);//This indicates that it was found
+                 found = true;
+                 break;
+             }    
+          
+         }
+         
+         //if never found
+         if(found == false )
+         {
+             roomInfo.add(3,false); //Never found
+         }
+        
+        
+     return roomInfo;   
+    }
+    
 }

@@ -82,7 +82,9 @@ public class ZombieBot implements world.ZombieBot {
         
         String[] cmds = cmd.split(" "); // split cmd by space
         
-        switch(cmds[0]) {
+        String userParam = cmds[1].toLowerCase(); //turns cmds entry to lowerCase 
+        
+        switch(cmds[0].toLowerCase()) {
             case "info":
                 result.add(world.getInfo());
                 break;
@@ -90,6 +92,8 @@ public class ZombieBot implements world.ZombieBot {
                 result.add(roomList.get(findRoomIndex()).Look()); //Looks at the current room
                 break;
             case "move":
+                //Direction
+                
                 result.add("handle move command");
                 break;
             case "pickup":  
@@ -106,7 +110,6 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "quit":
                    world.setQuit(true);
-
                 break;
             case "inventory":
                 result.add("handle inventory command");
@@ -127,8 +130,37 @@ public class ZombieBot implements world.ZombieBot {
         
         return result;
      }
-    
-    
+    //MAPS AN ENTRANCE DIRECTION TO A ROOM
+    public List entranceToRoom(String direction)
+    {
+        String room = "No Room Found";
+        int curRoomIndex = findRoomIndex();
+        //Get a rooms info
+        //1. Name
+        //2. Is it locked
+        //3. Is it ever found
+        List roomInfo = roomList.get(curRoomIndex).mapEntranceToRoomInfo(direction);
+  
+        return roomInfo; 
+    }
+    //CONTROLLS THE MOVE 
+    //RETURNS IF POSSIBLE OR NOT
+    public boolean canIMove(String direction){
+        boolean canIMove = false;
+        //Find what Room I'm in
+        List roomInfo = entranceToRoom(direction); //returns the roomInfo
+        
+        if(roomInfo.get(3).equals(true))//Object comparison not primitive?
+        {
+         canIMove = true;    
+        } 
+        
+        if(canIMove == false){
+            boolean doIHaveKey = false;
+        }
+        return canIMove; 
+    }
+    //FINDS ROOM INDEX
     public int findRoomIndex(){
         int roomIndex = 0; 
         for(String room: roomName){
