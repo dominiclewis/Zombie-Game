@@ -39,7 +39,7 @@ public class ZombieStarter {
             //Set up new world
 
             WorldLoader w1 = new WorldLoader();  //Create new instance of the WorldLoader class *Load the Json file 
-
+            Player player = new Player();
             World world = new World(w1.getInfo(), w1.getStart(), w1.getEnd(), w1.getStartHtml(), w1.getItems(), w1.getInventoryHtml()); //Inside the worldLoader class to access the getInfo method //WORLD ONLY IS USED TO STORE worldloader stuff
             //Set the currentRoom 
             world.setCurrentRoom(world.getStart());
