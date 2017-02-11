@@ -210,6 +210,27 @@ List<String> itemHtml = new ArrayList<>();
              
              }
     }
+     
+    public boolean removeItemFromRoom(String itemToRemove){
+        boolean removed = false;
+        //Scan through for item
+        for(String room: itemName)
+        {
+            if(room.equalsIgnoreCase(itemToRemove))
+            {
+                //remove item and html
+               // roomNum.remove(itemsInInventory);
+                itemName.remove(room);
+                itemHtml.remove(room);
+                
+                removed = true;
+                break; //So only one is removed at a time 
+            }
+            
+        }
+        
+        return removed;
+    }
     
     
     
