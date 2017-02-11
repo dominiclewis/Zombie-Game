@@ -129,7 +129,27 @@ public class ZombieBot implements world.ZombieBot {
                    world.setQuit(true);
                 break;
             case "inventory":
-                result.add("handle inventory command");
+                String backPackHtml = world.getInventoryHtml();
+                List <String> inventory = player.getUserInventory();
+                List <String> inventoryHtml = player.getUserInventoryHtml();
+                String toOutPut = backPackHtml;
+                
+             int i = 0;
+                for(String index: inventory)
+                {
+                    
+                    toOutPut+= " ";
+                    //Add item
+                    toOutPut+=index;
+                    
+                    toOutPut += "";
+                    //add it's html
+                    toOutPut+= inventoryHtml.get(i);
+                    i++;
+                }
+                
+                //output
+                result.add(toOutPut);
                 break;
             case "blank":
                 result.add("I beg your pardon?");
