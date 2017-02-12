@@ -211,7 +211,7 @@ List<String> itemHtml = new ArrayList<>();
     }
      public void addItemToRoom (String itemToAdd,String htmlToAdd)
      {
-        itemName.add(itemToAdd);
+        itemName.add(itemToAdd.toUpperCase());
         itemHtml.add(htmlToAdd);
          
      }
