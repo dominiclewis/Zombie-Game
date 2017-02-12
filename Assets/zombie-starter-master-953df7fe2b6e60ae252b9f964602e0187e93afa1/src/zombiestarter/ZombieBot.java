@@ -81,8 +81,13 @@ public class ZombieBot implements world.ZombieBot {
      *
      * @return
      */
-    public boolean disableTimer() {
-        return false;
+    public boolean disableTimer( ) {
+    if (world.getDisableTimer() == true)
+    {
+        return true;
+    } else{
+    return false;
+    }
     }
 
     /**
@@ -106,6 +111,9 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "move":
                 //Direction
+                world.setDisableTimer(true);
+                disableTimer();
+                world.setDisableTimer(false);
                 
                 List roomInfo = canIMove(cmds[1]);
                 if (!roomInfo.isEmpty()) {
@@ -137,7 +145,34 @@ public class ZombieBot implements world.ZombieBot {
                  }
                 break;
             case "kill":
-                result.add("handle kill command");
+                
+                 //If status is 0
+        //Output no zombies in the room
+        
+        //if status is 1 
+        //Pause timer and output zombie killed
+        
+        //If status is 2 
+        //Zombies present but no weapon in inventory
+                
+                switch (kill())
+                {
+                    case 0:
+                        result.add("No Zombies in room");
+                        break;
+                    case 1:
+                        
+                        result.add("Zombie killed!");
+                        if(roomList.get(findRoomIndex()).getZombieCount() == 0)
+                        {
+                        world.setDisableTimer(true);
+                        }
+                        break;
+                    
+                    case 2:
+                        result.add("No suitable weapon in inventory");
+                        break;
+                }
                 break;
             case "drop":
                 boolean sucessfull = drop(cmds[1].toLowerCase());
@@ -178,8 +213,6 @@ public class ZombieBot implements world.ZombieBot {
                 result.add("I beg your pardon?");
                 break;
             case "":
-                break;
-            case "test":
                 break;
             default:
                 result.add("<b>That's not a verb I recognise.</b>");
@@ -319,4 +352,55 @@ public class ZombieBot implements world.ZombieBot {
 
         return found;
     }
+    
+    public int kill(){
+        boolean succesfull = false,removed =false; 
+        int staticNumZomb = roomList.get(findRoomIndex()).getZombieCount();
+        int status = 0;
+        
+        
+        switch (staticNumZomb)
+        {
+          
+            case 0: 
+                status = 0; //No zombies to kill
+                succesfull = false; 
+                
+                    break; 
+                    
+                 //Every number except no zombies
+            default:
+             //Try to remove 
+              //daisy or chainsaw
+                removed = player.removeItem("chainsaw");
+                if(removed == false){ //No chainsaw present
+                    succesfull  = false;
+                    //try to remoe daisy
+                    removed = player.removeItem("daisy");
+                    
+                }
+                if(removed == true)
+                {
+                    status = 1; //Chainsaw or daisy found 
+                    //Daisy or chainsaw found 
+                    succesfull = true; 
+                    //Kill the zombie 
+                    roomList.get(findRoomIndex()).killZombieInRoom();
+                } else{
+                    status = 2;//Could not remove the item (No daisy or chainsaw available)
+                }   
+              break;
+             
+        }
+        //If status is 0
+        //Output no zombies in the room
+        
+        //if status is 1 
+        //Pause timer and output zombie killed
+        
+        //If status is 2 
+        //Zombies present but no weapon in inventory
+        return status;
+    }
+     
 }

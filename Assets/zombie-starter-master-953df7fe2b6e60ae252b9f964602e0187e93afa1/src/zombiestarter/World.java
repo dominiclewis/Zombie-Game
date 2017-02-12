@@ -21,6 +21,7 @@ import world.WItem;
 public class World {
 
     private boolean quit = false;
+    private boolean disableTimer;
     private String info;
     private String start; //start room
     private String end; //end room
@@ -38,6 +39,14 @@ public class World {
         this.items = items;
         this.inventoryHtml = inventoryHtml;
    
+    }
+
+    public boolean getDisableTimer() {
+        return disableTimer;
+    }
+
+    public void setDisableTimer(boolean disableTimer) {
+        this.disableTimer = disableTimer;
     }
     
     public String getCurrentRoom(){

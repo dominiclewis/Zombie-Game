@@ -123,6 +123,11 @@ List<String> itemHtml = new ArrayList<>();
         
         return itemName.size();
     }
+    
+    public void killZombieInRoom()
+    {
+        zombieCount --; //Decrement zombie 
+    }
     //LOOK
     public String Look(){
         String toReturn ="Room Name: ";
