@@ -113,9 +113,14 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "pickup":
 
-                result.add(cmds[1]);
-                boolean successful = pickUp(cmds[1]);
-
+                boolean sucessful = pickUp(cmds[1]);
+                 if (sucessful == true)
+                 {
+                     result.add(cmds[1] + " successfully picked up");
+                 }
+                 else{
+                     result.add("Could not pick up " + cmds[1]);
+                 }
                 break;
             case "kill":
                 result.add("handle kill command");
@@ -155,8 +160,6 @@ public class ZombieBot implements world.ZombieBot {
             case "":
                 break;
             case "test":
-
-
                 break;
             default:
                 result.add("<b>That's not a verb I recognise.</b>");
@@ -236,7 +239,6 @@ public class ZombieBot implements world.ZombieBot {
     }
 
     public boolean pickUp(String item) {
-        boolean successful = false;
         //Check if item is in room
         //Get the lists
         List<String> roomItems = roomList.get(findRoomIndex()).getItemName();
@@ -262,11 +264,6 @@ public class ZombieBot implements world.ZombieBot {
             }
         }
 
-        
-        //If it is store it
-        //Store the html
-        //Remove it from the roomtem list along with the html
-        //Move it into the user inventory along with the html
-        return successful;
+        return found;
     }
 }
