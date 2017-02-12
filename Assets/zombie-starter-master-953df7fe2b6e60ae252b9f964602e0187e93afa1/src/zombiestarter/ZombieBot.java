@@ -134,13 +134,9 @@ public class ZombieBot implements world.ZombieBot {
                 List<String> inventory = player.getUserInventory();
                 List<String> inventoryHtml = player.getUserInventoryHtml();
                 String toOutPut = backPackHtml;
-                System.out.println("Actual b pack " +player.getUserInventory());
-                System.out.println("actual HTMl for b back " + player.getUserInventoryHtml());
-                  System.out.println("BPHTMAL "+ toOutPut);
                 int i = 0;
                 for (String index : inventory) {
                     
-                      System.out.println("index" + index);
                     toOutPut += " ";
                     //Add item
                     toOutPut += index;
@@ -150,9 +146,7 @@ public class ZombieBot implements world.ZombieBot {
                     toOutPut += inventoryHtml.get(i);
                     i++;
                 }
-                System.out.println("End" + toOutPut);
-
-                //output
+   
                 result.add(toOutPut);
                 break;
             case "blank":
@@ -161,8 +155,7 @@ public class ZombieBot implements world.ZombieBot {
             case "":
                 break;
             case "test":
-                //Room temp = roomList.get(2);
-                //result.add(temp.Look());
+
 
                 break;
             default:
@@ -252,14 +245,12 @@ public class ZombieBot implements world.ZombieBot {
         int i = 0;
         boolean found = false;
         for (String roomItem : roomItems) {
-            System.out.println(roomItem);
             
             //Loop through items and find match if possible
 
             if (roomItem.equalsIgnoreCase(item)) {
                 
                 found = true;
-                System.out.println(roomHtml.get(i));
                 player.addToInventory(item, roomHtml.get(i)); 
                 
 
