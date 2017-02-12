@@ -149,7 +149,8 @@ public class ZombieBot implements world.ZombieBot {
                 }
                 break;
             case "timerexpired":
-                result.add("handle timeexpired command");
+                world.setQuit(true);
+                
                 break;
             case "quit":
                 world.setQuit(true);
