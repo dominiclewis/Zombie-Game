@@ -141,6 +141,8 @@ public class ZombieBot implements world.ZombieBot {
                 List<String> inventoryHtml = player.getUserInventoryHtml();
                 String toOutPut = backPackHtml;
                 int i = 0;
+                System.out.println(inventory);
+                System.out.println(inventoryHtml);
                 for (String index : inventory) {
                     
                     toOutPut += " ";
