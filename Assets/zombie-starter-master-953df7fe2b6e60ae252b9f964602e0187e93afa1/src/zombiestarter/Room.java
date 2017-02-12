@@ -212,18 +212,23 @@ List<String> itemHtml = new ArrayList<>();
      
     public boolean removeItemFromRoom(String itemToRemove){
         boolean removed = false;
+        int i =0;
         //Scan through for item
         for(String room: itemName)
         {
             if(room.equalsIgnoreCase(itemToRemove))
             {
+                
                 //remove item and html
                // roomNum.remove(itemsInInventory);
                 itemName.remove(room);
-                itemHtml.remove(room);
+                itemHtml.remove(i);
                 
                 removed = true;
                 break; //So only one is removed at a time 
+            }
+            else{
+                i++; 
             }
             
         }

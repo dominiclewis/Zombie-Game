@@ -255,8 +255,8 @@ public class ZombieBot implements world.ZombieBot {
             if (roomItem.equalsIgnoreCase(item)) {
                 
                 found = true;
-            
-                player.addToInventory(item, roomHtml.get(i));
+                System.out.println(roomHtml.get(i));
+              //  player.addToInventory(item, roomHtml.get(i)); this index doesn't wor
                 //remove it from the room 
 
                  roomList.get(findRoomIndex()).removeItemFromRoom(item);
