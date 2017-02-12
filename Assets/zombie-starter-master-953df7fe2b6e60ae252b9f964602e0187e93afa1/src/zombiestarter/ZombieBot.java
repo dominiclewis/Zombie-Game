@@ -54,7 +54,7 @@ public class ZombieBot implements world.ZombieBot {
      */
     @Override
     public int currentScore() {
-        return 0;
+        return player.getScore();
     }
 
     /**

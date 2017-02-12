@@ -15,7 +15,7 @@ import java.util.List;
 public class Player {
     private List<String> userInventory = new ArrayList<>();
     private List <String> userInventoryHtml = new ArrayList<>();
-
+    private int score = 0;
     
     public Player(){
     
@@ -34,8 +34,17 @@ public class Player {
    {
        userInventory.add(item);
        userInventoryHtml.add(html);
-       
+       //increase score
+       score++;
    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
     
     
     public boolean removeItem(String itemToRemove){
