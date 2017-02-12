@@ -126,7 +126,8 @@ public class ZombieBot implements world.ZombieBot {
                 result.add("handle kill command");
                 break;
             case "drop":
-                result.add("handle drop command");
+                boolean sucessfull = drop(cmds[1].toLowerCase());
+                
                 break;
             case "timerexpired":
                 result.add("handle timeexpired command");
@@ -237,7 +238,14 @@ public class ZombieBot implements world.ZombieBot {
 
         return roomIndex;
     }
-
+    public boolean drop(String item)
+    {
+        boolean found = false;
+        
+        //Check if item is in inventory 
+        
+     return found; 
+    }
     public boolean pickUp(String item) {
         //Check if item is in room
         //Get the lists
