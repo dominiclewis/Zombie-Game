@@ -98,6 +98,7 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "move":
                 //Direction
+                
                 List roomInfo = canIMove(cmds[1]);
                 if (!roomInfo.isEmpty()) {
                     if (roomInfo.get(3).equals(true)) //if we can move
@@ -110,6 +111,7 @@ public class ZombieBot implements world.ZombieBot {
                 } else {
                     result.add("No such room!");
                 }
+                
                 break;
             case "pickup":
 
@@ -141,20 +143,17 @@ public class ZombieBot implements world.ZombieBot {
                 List<String> inventoryHtml = player.getUserInventoryHtml();
                 String toOutPut = backPackHtml;
                 int i = 0;
-                System.out.println(inventory);
-                System.out.println(inventoryHtml);
                 for (String index : inventory) {
                     
                     toOutPut += " ";
                     //Add item
                     toOutPut += index;
-
-                    toOutPut += "";
+                    
+                    toOutPut += " ";
                     //add it's html
-                    toOutPut += inventoryHtml.get(i);
+                    toOutPut += inventoryHtml.get(i);   
                     i++;
                 }
-   
                 result.add(toOutPut);
                 break;
             case "blank":
@@ -173,7 +172,7 @@ public class ZombieBot implements world.ZombieBot {
 
     //MAPS AN ENTRANCE DIRECTION TO A ROOM
     public List entranceToRoom(String direction) {
-        String room = "No Room Found";
+        
         int curRoomIndex = findRoomIndex();
         //Get a rooms info
         // IT IS NOW EMPTY IF IT'S NEVER FOUND 
@@ -245,7 +244,32 @@ public class ZombieBot implements world.ZombieBot {
         boolean found = false;
         
         //Check if item is in inventory 
+        List <String> playerInventory = player.getUserInventory();
+        List<String>  invHtml = player.getUserInventoryHtml();
+        int i = 0;
+        String itemName = "";
+        String itemHtml = "";
         
+        for (String invValue: playerInventory)
+        {
+            
+            if(invValue.equalsIgnoreCase(item))
+            {
+                itemName = invValue;
+                itemHtml = invHtml.get(i);
+                found = true;
+                break;
+            } else{
+            
+                
+            //else just for fun 
+            i++;
+            }
+            
+        }
+        //remove item from inventory if found
+        
+        //add it to the room 
      return found; 
     }
     public boolean pickUp(String item) {
