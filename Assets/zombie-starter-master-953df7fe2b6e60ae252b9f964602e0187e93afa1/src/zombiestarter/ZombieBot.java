@@ -134,10 +134,13 @@ public class ZombieBot implements world.ZombieBot {
                 List<String> inventory = player.getUserInventory();
                 List<String> inventoryHtml = player.getUserInventoryHtml();
                 String toOutPut = backPackHtml;
-
+                System.out.println("Actual b pack " +player.getUserInventory());
+                System.out.println("actual HTMl for b back " + player.getUserInventoryHtml());
+                  System.out.println("BPHTMAL "+ toOutPut);
                 int i = 0;
                 for (String index : inventory) {
-
+                    
+                      System.out.println("index" + index);
                     toOutPut += " ";
                     //Add item
                     toOutPut += index;
@@ -147,6 +150,7 @@ public class ZombieBot implements world.ZombieBot {
                     toOutPut += inventoryHtml.get(i);
                     i++;
                 }
+                System.out.println("End" + toOutPut);
 
                 //output
                 result.add(toOutPut);
@@ -256,8 +260,8 @@ public class ZombieBot implements world.ZombieBot {
                 
                 found = true;
                 System.out.println(roomHtml.get(i));
-              //  player.addToInventory(item, roomHtml.get(i)); this index doesn't wor
-                //remove it from the room 
+                player.addToInventory(item, roomHtml.get(i)); 
+                
 
                  roomList.get(findRoomIndex()).removeItemFromRoom(item);
                 break; 
