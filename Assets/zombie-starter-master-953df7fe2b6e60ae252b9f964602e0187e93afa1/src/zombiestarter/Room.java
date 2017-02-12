@@ -209,7 +209,12 @@ List<String> itemHtml = new ArrayList<>();
              
              }
     }
-     
+     public void addItemToRoom (String itemToAdd,String htmlToAdd)
+     {
+        itemName.add(itemToAdd);
+        itemHtml.add(htmlToAdd);
+         
+     }
     public boolean removeItemFromRoom(String itemToRemove){
         boolean removed = false;
         int i =0;

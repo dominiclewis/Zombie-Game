@@ -129,7 +129,12 @@ public class ZombieBot implements world.ZombieBot {
                 break;
             case "drop":
                 boolean sucessfull = drop(cmds[1].toLowerCase());
-                
+                if (sucessfull == true)
+                {
+                    result.add(cmds[1] + " dropped!");
+                } else{
+                    result.add(cmds[1] + " is not in inventory");
+                }
                 break;
             case "timerexpired":
                 result.add("handle timeexpired command");
@@ -249,7 +254,7 @@ public class ZombieBot implements world.ZombieBot {
         int i = 0;
         String itemName = "";
         String itemHtml = "";
-        
+        //this is really just to get the indexes
         for (String invValue: playerInventory)
         {
             
@@ -268,8 +273,9 @@ public class ZombieBot implements world.ZombieBot {
             
         }
         //remove item from inventory if found
-        
+        player.removeItem(item);
         //add it to the room 
+        roomList.get(findRoomIndex()).addItemToRoom(itemName, itemHtml);
      return found; 
     }
     public boolean pickUp(String item) {
