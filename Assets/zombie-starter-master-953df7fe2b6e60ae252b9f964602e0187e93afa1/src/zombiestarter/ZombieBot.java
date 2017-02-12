@@ -63,8 +63,16 @@ public class ZombieBot implements world.ZombieBot {
      *
      * @return true if enable timer, otherwise false
      */
+    //change timer run to false just before leaving room
     public boolean enableTimer() {
+        if( roomList.get(findRoomIndex()).getZombieCount() != 0 && (roomList.get(findRoomIndex()).getTimerRun()) == false)
+        {
+            roomList.get(findRoomIndex()).setTimerRun(true);
+            return true;
+        }
+        else{
         return false;
+        }
     }
 
     /**
@@ -103,6 +111,10 @@ public class ZombieBot implements world.ZombieBot {
                 if (!roomInfo.isEmpty()) {
                     if (roomInfo.get(3).equals(true)) //if we can move
                     {
+                        //Toggle the timer back for the current room so it runs again
+                        //if return to room with zombies in 
+                        roomList.get(findRoomIndex()).setTimerRun(false);
+                        
                         world.setCurrentRoom(roomInfo.get(0).toString());
                         result.add("Moved to " + (roomInfo.get(0).toString()));
                     } else if (roomInfo.get(4).equals(true)) {

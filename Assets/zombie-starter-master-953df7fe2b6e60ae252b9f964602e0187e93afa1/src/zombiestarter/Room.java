@@ -19,6 +19,7 @@ public class Room {
 private String roomName;
 private String roomDescription;
 int zombieCount; 
+boolean timerRun = false; 
 //Indexes should be shared
 List<String> entranceDirection = new ArrayList<>();
 List<String> leadsTo = new ArrayList<>();
@@ -43,7 +44,13 @@ List<String> itemHtml = new ArrayList<>();
         
     }
 
+   public boolean getTimerRun() {
+        return timerRun;
+    }
 
+    public void setTimerRun(boolean timerRun) {
+        this.timerRun = timerRun;
+    }
     public String getRoomName() {
         return roomName;
     }
