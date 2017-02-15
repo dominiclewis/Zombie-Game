@@ -49,16 +49,21 @@ public class Player {
     
     public boolean removeItem(String itemToRemove){
         boolean removed = false;
+        int j = 0;
         //Scan through for item
         for(String itemsInInventory: userInventory)
         {
+            
             if(itemsInInventory.equalsIgnoreCase(itemToRemove))
             {
                 //remove item and html
                 userInventory.remove(itemsInInventory);
-                userInventoryHtml.remove(itemsInInventory);
+                userInventoryHtml.remove(j);
                 removed = true;
                 break; //So only one is removed at a time 
+            }
+            else{ 
+                j++;
             }
             
         }
