@@ -49,7 +49,7 @@ public class Player {
     
     public boolean removeItem(String itemToRemove){
         boolean removed = false;
-        int j = 0;
+        int j = 0; 
         //Scan through for item
         for(String itemsInInventory: userInventory)
         {
