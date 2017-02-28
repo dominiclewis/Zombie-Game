@@ -99,9 +99,10 @@ public class ZombieBot implements world.ZombieBot {
     @Override
     public List<String> processCmd(String cmd) {
         ArrayList<String> result = new ArrayList<>();
-
+         //Doesn't get here with no space 
+         try{
         String[] cmds = cmd.split(" "); // split cmd by space
-
+        
         switch (cmds[0].toLowerCase()) {
             case "info":
                 result.add(world.getInfo());
@@ -217,6 +218,11 @@ public class ZombieBot implements world.ZombieBot {
             default:
                 result.add("<b>That's not a verb I recognise.</b>");
         }
+         }
+         catch(ArrayIndexOutOfBoundsException arrayIndexOutOfBounds)
+         {
+             result.add("Try again!");
+         }
 
         return result;
     }
