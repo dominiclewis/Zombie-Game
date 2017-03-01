@@ -149,7 +149,8 @@ public class ZombieBot implements world.ZombieBot {
                     }
                     if (finalRoomController() == true)
                        {
-                           result.add("Congratulations your comleted zombieBots");
+                           result.add("Congratulations you've comleted zombieBots");
+                           world.setQuit(true);
                        }
                     break;
                 case "kill":
@@ -178,7 +179,8 @@ public class ZombieBot implements world.ZombieBot {
                     }
                     if (finalRoomController() == true)
                        {
-                           result.add("Congratulations your comleted zombieBots");
+                           result.add("Congratulations you've comleted zombieBots");
+                           world.setQuit(true);
                        }
                     break;
                 case "drop":
@@ -190,7 +192,9 @@ public class ZombieBot implements world.ZombieBot {
                     }
                     if (finalRoomController() == true)
                        {
-                           result.add("Congratulations your comleted zombieBots");
+                           result.add("Congratulations you've comleted zombieBots");
+                           world.setQuit(true);
+                           
                        }
                     break;
                 case "timerexpired":
@@ -363,7 +367,7 @@ public class ZombieBot implements world.ZombieBot {
     }
 
     public int kill() {
-        boolean succesfull = false, removed = false;
+        boolean succesfull = false, removed = false; //can someone check if these are actually used?
         int staticNumZomb = roomList.get(findRoomIndex()).getZombieCount();
         int status = 0;
 
