@@ -121,7 +121,7 @@ public class ZombieStarter {
                     // which allows the address to then be typed into client.
                     ip.getHostAddress(),
                     8085,
-                    new ZombieBot(world, roomList, roomName,player));
+                    new ZombieBot(world, roomList, roomName, player));
         } catch (UnknownHostException ex) {
             Logger.getLogger(
                     ZombieStarter.class.getName()).log(Level.SEVERE, null, ex);
