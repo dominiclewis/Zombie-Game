@@ -133,10 +133,15 @@ public class ZombieBot implements world.ZombieBot {
                     } else {
                         result.add("No such room!");
                     }
+                    /*
                        if (finalRoomController() == true)
                        {
-                           result.add("Congratulations your comleted zombieBots");
+                           System.out.println("test");
+                           result.add("Congratulations your completed zombieBots");
+                           System.out.println("test");
+                              world.setQuit(true);
                        }
+*/
                        
                     break;
                 case "pickup":
@@ -147,11 +152,13 @@ public class ZombieBot implements world.ZombieBot {
                     } else {
                         result.add("Could not pick up " + cmds[1]);
                     }
+                    /*
                     if (finalRoomController() == true)
                        {
-                           result.add("Congratulations you've comleted zombieBots");
+                           result.add("Congratulations you've completed zombieBots");
                            world.setQuit(true);
                        }
+*/
                     break;
                 case "kill":
 
@@ -177,11 +184,13 @@ public class ZombieBot implements world.ZombieBot {
                             result.add("No suitable weapon in inventory");
                             break;
                     }
+                    /*
                     if (finalRoomController() == true)
                        {
                            result.add("Congratulations you've comleted zombieBots");
                            world.setQuit(true);
                        }
+*/
                     break;
                 case "drop":
                     boolean sucessfull = drop(cmds[1].toLowerCase());
