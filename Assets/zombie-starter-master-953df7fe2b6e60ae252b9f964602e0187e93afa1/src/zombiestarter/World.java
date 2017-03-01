@@ -100,5 +100,6 @@ public class World {
     public String getInventoryHtml() {
         return inventoryHtml;
     }
+    
 
 }

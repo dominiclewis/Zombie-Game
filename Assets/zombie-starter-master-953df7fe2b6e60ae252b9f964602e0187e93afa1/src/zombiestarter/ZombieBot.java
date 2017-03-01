@@ -133,7 +133,11 @@ public class ZombieBot implements world.ZombieBot {
                     } else {
                         result.add("No such room!");
                     }
-
+                       if (finalRoomController() == true)
+                       {
+                           result.add("Congratulations your comleted zombieBots");
+                       }
+                       
                     break;
                 case "pickup":
 
@@ -143,6 +147,10 @@ public class ZombieBot implements world.ZombieBot {
                     } else {
                         result.add("Could not pick up " + cmds[1]);
                     }
+                    if (finalRoomController() == true)
+                       {
+                           result.add("Congratulations your comleted zombieBots");
+                       }
                     break;
                 case "kill":
 
@@ -168,6 +176,10 @@ public class ZombieBot implements world.ZombieBot {
                             result.add("No suitable weapon in inventory");
                             break;
                     }
+                    if (finalRoomController() == true)
+                       {
+                           result.add("Congratulations your comleted zombieBots");
+                       }
                     break;
                 case "drop":
                     boolean sucessfull = drop(cmds[1].toLowerCase());
@@ -176,6 +188,10 @@ public class ZombieBot implements world.ZombieBot {
                     } else {
                         result.add(cmds[1] + " is not in inventory");
                     }
+                    if (finalRoomController() == true)
+                       {
+                           result.add("Congratulations your comleted zombieBots");
+                       }
                     break;
                 case "timerexpired":
                     world.setQuit(true);
@@ -391,5 +407,51 @@ public class ZombieBot implements world.ZombieBot {
         //Zombies present but no weapon in inventory
         return status;
     }
-
+    //Detects if the final room has been found
+    public boolean canQuitRoomFound(){
+        boolean finalRoom = false;
+        //check if room name is the same as the end room name
+        if(world.getCurrentRoom().equalsIgnoreCase(world.getEnd()))
+        {
+            finalRoom = true;
+        }
+        return finalRoom; 
+    }
+    public boolean zombiesInTheRoom()
+    {
+      boolean zombieFound = true; 
+      if(roomList.get(findRoomIndex()).getZombieCount() == 0) //if the zombie count of the current room is 0 
+      {
+          zombieFound = false;
+      }
+      return zombieFound; 
+              
+    }
+    
+    public boolean itemsInTheRoom(){
+        
+        boolean itemsInRoom = true; 
+        List itemNamesInFinalRoom = roomList.get(findRoomIndex()).getItemName();
+        if (itemNamesInFinalRoom.isEmpty() == true) //if the list is empty 
+        {
+            itemsInRoom = false;
+        }
+        return itemsInRoom;
+    }
+    //check if theres no zombies in the room
+    
+    //false if can't quit true if can
+    public boolean finalRoomController()
+    {
+        boolean overall = false;
+        if(canQuitRoomFound() == true)
+        {
+            if ( (itemsInTheRoom() && zombiesInTheRoom()) == false)
+            {
+                overall = true;
+            }
+        }
+        return overall;
+    }
+    
 }
