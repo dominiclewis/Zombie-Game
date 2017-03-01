@@ -5,12 +5,8 @@
  */
 package zombiestarter;
 
-
 import java.util.List;
 import world.WItem;
-
-
-
 
 /**
  *
@@ -25,20 +21,20 @@ public class World {
     private String info;
     private String start; //start room
     private String end; //end room
-    private String startHTML; 
-    private List <WItem> items;
+    private String startHTML;
+    private List<WItem> items;
     private String inventoryHtml;
     private String currentRoom; //This string will store the current room 
-    
+
     //Contructor
-    World(String info,String start, String end,String startHTML,List<WItem> items,String inventoryHtml) {
+    World(String info, String start, String end, String startHTML, List<WItem> items, String inventoryHtml) {
         this.info = info; //assign info to paramater
         this.start = start;
         this.end = end;
         this.startHTML = startHTML;
         this.items = items;
         this.inventoryHtml = inventoryHtml;
-   
+
     }
 
     public boolean getDisableTimer() {
@@ -48,23 +44,26 @@ public class World {
     public void setDisableTimer(boolean disableTimer) {
         this.disableTimer = disableTimer;
     }
-    
-    public String getCurrentRoom(){
-        
+
+    public String getCurrentRoom() {
+
         return currentRoom;
     }
-    public void setCurrentRoom(String currentRoomUpdate)
-    {
-     this.currentRoom = currentRoomUpdate;
+
+    public void setCurrentRoom(String currentRoomUpdate) {
+        this.currentRoom = currentRoomUpdate;
     }
+
     //START STRING
     public String getStart() {
         return start;
     }
+
     //END STRING
     public String getEnd() {
         return end;
     }
+
     //START HTML 
     public String getStartHTML() {
         return startHTML;
@@ -74,7 +73,7 @@ public class World {
     public void setQuit(boolean quitValue) {
         this.quit = quitValue;
     }
-    
+
     //Gets quit with param  
     //QUIT FUNCTION
     public boolean getQuit() {
@@ -82,12 +81,13 @@ public class World {
         return quit;
 
     }
- 
+
 //INFO
 //RETURNS INFO STRING
     public String getInfo() {
         return info;
     }
+
     //QUIT ROOM
     public boolean getQuitRoom() {
         return quit;
@@ -100,8 +100,5 @@ public class World {
     public String getInventoryHtml() {
         return inventoryHtml;
     }
-
-  
-    
 
 }

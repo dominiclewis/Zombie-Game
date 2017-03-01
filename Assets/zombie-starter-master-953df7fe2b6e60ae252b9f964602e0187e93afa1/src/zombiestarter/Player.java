@@ -13,30 +13,31 @@ import java.util.List;
  * @author Dominic
  */
 public class Player {
+
     private List<String> userInventory = new ArrayList<>();
-    private List <String> userInventoryHtml = new ArrayList<>();
+    private List<String> userInventoryHtml = new ArrayList<>();
     private int score = 0;
-    
-    public Player(){
-    
-}
+
+    public Player() {
+
+    }
+
     public List<String> getUserInventory() {
-        
+
         return userInventory;
     }
 
     public List<String> getUserInventoryHtml() {
-        
+
         return userInventoryHtml;
     }
-    
-   public void addToInventory(String item, String html)
-   {
-       userInventory.add(item);
-       userInventoryHtml.add(html);
-       //increase score
-       score++;
-   }
+
+    public void addToInventory(String item, String html) {
+        userInventory.add(item);
+        userInventoryHtml.add(html);
+        //increase score
+        score++;
+    }
 
     public int getScore() {
         return score;
@@ -45,31 +46,25 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
-    
-    
-    public boolean removeItem(String itemToRemove){
+
+    public boolean removeItem(String itemToRemove) {
         boolean removed = false;
-        int j = 0; 
+        int j = 0;
         //Scan through for item
-        for(String itemsInInventory: userInventory)
-        {
-            
-            if(itemsInInventory.equalsIgnoreCase(itemToRemove))
-            {
+        for (String itemsInInventory : userInventory) {
+
+            if (itemsInInventory.equalsIgnoreCase(itemToRemove)) {
                 //remove item and html
                 userInventory.remove(itemsInInventory);
                 userInventoryHtml.remove(j);
                 removed = true;
                 break; //So only one is removed at a time 
-            }
-            else{ 
+            } else {
                 j++;
             }
-            
+
         }
-        
+
         return removed;
     }
 }
-
-

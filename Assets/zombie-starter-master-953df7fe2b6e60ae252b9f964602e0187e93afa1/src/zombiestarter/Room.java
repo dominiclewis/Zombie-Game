@@ -8,30 +8,26 @@ package zombiestarter;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 /**
  *
  * @author Dominic
  */
 public class Room {
-private String roomName;
-private String roomDescription;
-int zombieCount; 
-boolean timerRun = false; 
+
+    private String roomName;
+    private String roomDescription;
+    int zombieCount;
+    boolean timerRun = false;
 //Indexes should be shared
-List<String> entranceDirection = new ArrayList<>();
-List<String> leadsTo = new ArrayList<>();
-List<Boolean> locked = new ArrayList<>();
+    List<String> entranceDirection = new ArrayList<>();
+    List<String> leadsTo = new ArrayList<>();
+    List<Boolean> locked = new ArrayList<>();
 //Indexes should be shared/corresponding
-List<String> itemName = new ArrayList<>();
-List<String> itemHtml = new ArrayList<>(); 
+    List<String> itemName = new ArrayList<>();
+    List<String> itemHtml = new ArrayList<>();
 
-
-
-    public Room(String roomName, String roomDescription,int zombieCount, 
-            List<String> entranceDirection, List <String> leadsTo, List <Boolean> locked,
+    public Room(String roomName, String roomDescription, int zombieCount,
+            List<String> entranceDirection, List<String> leadsTo, List<Boolean> locked,
             List<String> itemName, List<String> itemHtml) {
         this.roomName = roomName;
         this.roomDescription = roomDescription;
@@ -40,17 +36,18 @@ List<String> itemHtml = new ArrayList<>();
         this.leadsTo = leadsTo;
         this.locked = locked;
         this.itemName = itemName;
-        this.itemHtml = itemHtml; 
-        
+        this.itemHtml = itemHtml;
+
     }
 
-   public boolean getTimerRun() {
+    public boolean getTimerRun() {
         return timerRun;
     }
 
     public void setTimerRun(boolean timerRun) {
         this.timerRun = timerRun;
     }
+
     public String getRoomName() {
         return roomName;
     }
@@ -114,145 +111,133 @@ List<String> itemHtml = new ArrayList<>();
     public void setItemHtml(List<String> itemHtml) {
         this.itemHtml = itemHtml;
     }
-    public int numRooms()
-    {
-        
+
+    public int numRooms() {
+
         return entranceDirection.size();
     }
-    public int numItems(){
-        
+
+    public int numItems() {
+
         return itemName.size();
     }
-    
-    public void killZombieInRoom()
-    {
-        zombieCount --; //Decrement zombie 
+
+    public void killZombieInRoom() {
+        zombieCount--; //Decrement zombie 
     }
+
     //LOOK
-    public String Look(){
-        String toReturn ="Room Name: ";
-        
-         String name = getRoomName(); //works
-         String description = getRoomDescription();         
-         toReturn += name;
-         toReturn += ("<br>Description: " + description);
-         toReturn+="<br>Zombies: "; //Space //Works
-         int numZombies = getZombieCount();
-         toReturn += (Integer.toString(numZombies));//Turn numOfZombies to a String
-         
-         //Loop
-         for(int i = 0; i< numRooms(); i++)
-         {     
-             
-         String entrance = entranceDirection.get(i); //accessing directly as local to method
-        
-         toReturn += ("<br>" + entrance);
-         //Space
-         String roomLedTo = leadsTo.get(i);
-         toReturn += (" : " + roomLedTo);
-         //Space
-         Boolean isRoomLocked = locked.get(i);
-         if(isRoomLocked == true){
-             toReturn+= (": Locked!");
-         } else{
-             toReturn+= (": Unlocked" );
-         }
-         
-          //BR?
-         }
-         //Items 
-         //Loop
-         toReturn+="<br>Items<br>";
-         for(int i =0; i< numItems(); i++)
-         {
-         String itemNameString = (String)itemName.get(i);
-         toReturn += itemNameString;
-         //Space
-         toReturn += " ";
-         String itemHtmlString = itemHtml.get(i);
-         toReturn += itemHtmlString;
-         toReturn += "  ";
-         //BR
+    public String Look() {
+        String toReturn = "Room Name: ";
+
+        String name = getRoomName(); //works
+        String description = getRoomDescription();
+        toReturn += name;
+        toReturn += ("<br>Description: " + description);
+        toReturn += "<br>Zombies: "; //Space //Works
+        int numZombies = getZombieCount();
+        toReturn += (Integer.toString(numZombies));//Turn numOfZombies to a String
+
+        //Loop
+        for (int i = 0; i < numRooms(); i++) {
+
+            String entrance = entranceDirection.get(i); //accessing directly as local to method
+
+            toReturn += ("<br>" + entrance);
+            //Space
+            String roomLedTo = leadsTo.get(i);
+            toReturn += (" : " + roomLedTo);
+            //Space
+            Boolean isRoomLocked = locked.get(i);
+            if (isRoomLocked == true) {
+                toReturn += (": Locked!");
+            } else {
+                toReturn += (": Unlocked");
+            }
+
+            //BR?
         }
-         
-        
-        
-        return toReturn; 
+        //Items 
+        //Loop
+        toReturn += "<br>Items<br>";
+        for (int i = 0; i < numItems(); i++) {
+            String itemNameString = (String) itemName.get(i);
+            toReturn += itemNameString;
+            //Space
+            toReturn += " ";
+            String itemHtmlString = itemHtml.get(i);
+            toReturn += itemHtmlString;
+            toReturn += "  ";
+            //BR
+        }
+
+        return toReturn;
     }
-    
-    
-    public List mapEntranceToRoomInfo(String direction){
+
+    public List mapEntranceToRoomInfo(String direction) {
         List roomInfo = new ArrayList();
-        
-        boolean found = false; 
-        
+
+        boolean found = false;
+
         //Loop through room till found
-         for(int i = 0; i< numRooms(); i++)
-         {
-             //Room found
-             if(entranceDirection.get(i).equalsIgnoreCase(direction)){
-                 roomInfo.add(0,leadsTo.get(i)); //0 element in arrayList
-                 roomInfo.add(1, locked.get(i)); //1 element in the arrayList
-                 roomInfo.add(2,true);//This indicates that it was found
-                 found = true;
-                 break;
-             }    
-          
-         }
-         
-         //if never found
-         if(found == false )
-         {
+        for (int i = 0; i < numRooms(); i++) {
+            //Room found
+            if (entranceDirection.get(i).equalsIgnoreCase(direction)) {
+                roomInfo.add(0, leadsTo.get(i)); //0 element in arrayList
+                roomInfo.add(1, locked.get(i)); //1 element in the arrayList
+                roomInfo.add(2, true);//This indicates that it was found
+                found = true;
+                break;
+            }
+
+        }
+
+        //if never found
+        if (found == false) {
             //Never found leave empty!
-         }
-        
-        
-     return roomInfo;   
+        }
+
+        return roomInfo;
     }
-    
-    public void setDoorToUnlocked(String direction){
-         for(int i = 0; i< numRooms(); i++)
-         {
-             //Room 
-             if(entranceDirection.get(i).equalsIgnoreCase(direction)){
-               locked.set(i, false);
-                 
-             }
-             
-             }
+
+    public void setDoorToUnlocked(String direction) {
+        for (int i = 0; i < numRooms(); i++) {
+            //Room 
+            if (entranceDirection.get(i).equalsIgnoreCase(direction)) {
+                locked.set(i, false);
+
+            }
+
+        }
     }
-     public void addItemToRoom (String itemToAdd,String htmlToAdd)
-     {
+
+    public void addItemToRoom(String itemToAdd, String htmlToAdd) {
         itemName.add(itemToAdd.toUpperCase());
         itemHtml.add(htmlToAdd);
-         
-     }
-    public boolean removeItemFromRoom(String itemToRemove){
+
+    }
+
+    public boolean removeItemFromRoom(String itemToRemove) {
         boolean removed = false;
-        int i =0;
+        int i = 0;
         //Scan through for item
-        for(String room: itemName)
-        {
-            if(room.equalsIgnoreCase(itemToRemove))
-            {
-                
+        for (String room : itemName) {
+            if (room.equalsIgnoreCase(itemToRemove)) {
+
                 //remove item and html
-               // roomNum.remove(itemsInInventory);
+                // roomNum.remove(itemsInInventory);
                 itemName.remove(room);
                 itemHtml.remove(i);
-                
+
                 removed = true;
                 break; //So only one is removed at a time 
+            } else {
+                i++;
             }
-            else{
-                i++; 
-            }
-            
+
         }
-        
+
         return removed;
     }
-    
-    
-    
+
 }

@@ -101,7 +101,7 @@ public class ZombieBot implements world.ZombieBot {
             String[] cmds = cmd.split(" "); // split cmd by space
 
             switch (cmds[0].toLowerCase()) {
-                
+
                 case "help":
                     result.add("Info: Returns an information string <br> Look: Shows the current view of the room you are in <br> Move: attempts to move to a room, if locked will attempt to unlock it if you have a key <br> Pickup: attempts to pickup an item in the room<br> kill: Attempts to slay a zombie if you have a daisy or a chainsaw in your inventory <br> Drop: Attempts to drop an item <br> Quit: Quits the game <br> Inventory: Shows the current inventory ");
                     break;
