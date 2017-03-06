@@ -2,6 +2,7 @@ package zombiestarter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 /**
  *
@@ -14,10 +15,11 @@ import java.util.List;
  */
 public class ZombieBot implements world.ZombieBot {
 
-    private World world;
+    public World world;
     private List<Room> roomList;
     private List<String> roomName;
     private Player player;
+    private boolean finishQuit;
 
     ZombieBot(World world, List<Room> roomList, List<String> roomName, Player player) {
         this.world = world;
@@ -96,155 +98,147 @@ public class ZombieBot implements world.ZombieBot {
     @Override
     public List<String> processCmd(String cmd) {
         ArrayList<String> result = new ArrayList<>();
-        //Doesn't get here with no space 
-        try {
-            String[] cmds = cmd.split(" "); // split cmd by space
 
-            switch (cmds[0].toLowerCase()) {
+        //checks if game is finished. Proceeds to switch if not. 
+        if (finishQuit == true) {
+            world.setQuit(true);
+        } else {
 
-                case "help":
-                    result.add("Info: Returns an information string <br> Look: Shows the current view of the room you are in <br> Move: attempts to move to a room, if locked will attempt to unlock it if you have a key <br> Pickup: attempts to pickup an item in the room<br> kill: Attempts to slay a zombie if you have a daisy or a chainsaw in your inventory <br> Drop: Attempts to drop an item <br> Quit: Quits the game <br> Inventory: Shows the current inventory ");
-                    break;
-                case "info":
-                    result.add(world.getInfo());
-                    break;
-                case "look":
-                    result.add(roomList.get(findRoomIndex()).Look()); //Looks at the current room
-                    break;
-                case "move":
-                    //Direction
-                    world.setDisableTimer(true);
-                    disableTimer();
-                    world.setDisableTimer(false);
+            try {
+                String[] cmds = cmd.split(" "); // split cmd by space.      
 
-                    List roomInfo = canIMove(cmds[1]);
-                    if (!roomInfo.isEmpty()) {
-                        if (roomInfo.get(3).equals(true)) //if we can move
-                        {
-                            //Toggle the timer back for the current room so it runs again
-                            //if return to room with zombies in 
-                            roomList.get(findRoomIndex()).setTimerRun(false);
+                switch (cmds[0].toLowerCase()) {
 
-                            world.setCurrentRoom(roomInfo.get(0).toString());
-                            result.add("Moved to " + (roomInfo.get(0).toString()));
-                        } else if (roomInfo.get(4).equals(true)) {
-                            result.add("You need a key to enter");
-                        }
-                    } else {
-                        result.add("No such room!");
-                    }
-                    /*
-                       if (finalRoomController() == true)
-                       {
-                           System.out.println("test");
-                           result.add("Congratulations your completed zombieBots");
-                           System.out.println("test");
-                              world.setQuit(true);
-                       }
-*/
-                       
-                    break;
-                case "pickup":
+                    case "help":
+                        result.add("Info: Returns an information string <br> Look: Shows the current view of the room you are in <br> Move: attempts to move to a room, if locked will attempt to unlock it if you have a key <br> Pickup: attempts to pickup an item in the room<br> kill: Attempts to slay a zombie if you have a daisy or a chainsaw in your inventory <br> Drop: Attempts to drop an item <br> Quit: Quits the game <br> Inventory: Shows the current inventory ");
+                        break;
+                    case "info":
+                        result.add(world.getInfo());
+                        break;
+                    case "look":
+                        result.add(roomList.get(findRoomIndex()).Look()); //Looks at the current room
+                        break;
+                    case "move":
+                        //Direction
+                        world.setDisableTimer(true);
+                        disableTimer();
+                        world.setDisableTimer(false);
 
-                    boolean sucessful = pickUp(cmds[1]);
-                    if (sucessful == true) {
-                        result.add(cmds[1] + " successfully picked up");
-                    } else {
-                        result.add("Could not pick up " + cmds[1]);
-                    }
-                    /*
-                    if (finalRoomController() == true)
-                       {
-                           result.add("Congratulations you've completed zombieBots");
-                           world.setQuit(true);
-                       }
-*/
-                    break;
-                case "kill":
+                        List roomInfo = canIMove(cmds[1]);
+                        if (!roomInfo.isEmpty()) {
+                            if (roomInfo.get(3).equals(true)) //if we can move
+                            {
+                                //Toggle the timer back for the current room so it runs again
+                                //if return to room with zombies in 
+                                roomList.get(findRoomIndex()).setTimerRun(false);
 
-                    //If status is 0
-                    //Output no zombies in the room
-                    //if status is 1 
-                    //Pause timer and output zombie killed
-                    //If status is 2 
-                    //Zombies present but no weapon in inventory
-                    switch (kill()) {
-                        case 0:
-                            result.add("No Zombies in room");
-                            break;
-                        case 1:
-
-                            result.add("Zombie killed!");
-                            if (roomList.get(findRoomIndex()).getZombieCount() == 0) {
-                                world.setDisableTimer(true);
+                                world.setCurrentRoom(roomInfo.get(0).toString());
+                                result.add("Moved to " + (roomInfo.get(0).toString()));
+                            } else if (roomInfo.get(4).equals(true)) {
+                                result.add("You need a key to enter");
                             }
-                            break;
+                        } else {
+                            result.add("No such room!");
+                        }
 
-                        case 2:
-                            result.add("No suitable weapon in inventory");
-                            break;
-                    }
-                    /*
-                    if (finalRoomController() == true)
-                       {
-                           result.add("Congratulations you've comleted zombieBots");
-                           world.setQuit(true);
-                       }
-*/
-                    break;
-                case "drop":
-                    boolean sucessfull = drop(cmds[1].toLowerCase());
-                    if (sucessfull == true) {
-                        result.add(cmds[1] + " dropped!");
-                    } else {
-                        result.add(cmds[1] + " is not in inventory");
-                    }
-                    if (finalRoomController() == true)
-                       {
-                           result.add("Congratulations you've comleted zombieBots");
-                           world.setQuit(true);
-                           
-                       }
-                    break;
-                case "timerexpired":
-                    world.setQuit(true);
 
-                    break;
-                case "quit":
-                    world.setQuit(true);
-                    break;
-                case "inventory":
-                    String backPackHtml = world.getInventoryHtml();
-                    List<String> inventory = player.getUserInventory();
-                    List<String> inventoryHtml = player.getUserInventoryHtml();
-                    String toOutPut = backPackHtml;
-                    int i = 0;
-                    for (String index : inventory) {
+                        break;
+                    case "pickup":
 
-                        toOutPut += " ";
-                        //Add item
-                        toOutPut += index;
+                        boolean sucessful = pickUp(cmds[1]);
+                        if (sucessful == true) {
+                            result.add(cmds[1] + " successfully picked up");
+                        } else {
+                            result.add("Could not pick up " + cmds[1]);
+                        }
+                        // checks ending conditions 
+                        if (finalRoomController() == true) {
 
-                        toOutPut += " ";
-                        //add it's html
-                        toOutPut += inventoryHtml.get(i);
-                        i++;
-                    }
-                    result.add(toOutPut);
-                    break;
-                case "blank":
-                    result.add("I beg your pardon?");
-                    break;
-                case "":
-                    break;
-                default:
-                    result.add("<b>That's not a verb I recognise.</b>");
+                            result.add("Congratulations your completed zombieBots");
+                            result.add("please press enter to quit");
+                            finishQuit = true;
+
+                        }
+
+                        break;
+                    case "kill":
+
+                        //If status is 0
+                        //Output no zombies in the room
+                        //if status is 1 
+                        //Pause timer and output zombie killed
+                        //If status is 2 
+                        //Zombies present but no weapon in inventory
+                        switch (kill()) {
+                            case 0:
+                                result.add("No Zombies in room");
+                                break;
+                            case 1:
+
+                                result.add("Zombie killed!");
+                                if (roomList.get(findRoomIndex()).getZombieCount() == 0) {
+                                    world.setDisableTimer(true);
+                                }
+                                break;
+
+                            case 2:
+                                result.add("No suitable weapon in inventory");
+                                break;
+                        }
+
+                        break;
+                    case "drop":
+                        boolean sucessfull = drop(cmds[1].toLowerCase());
+                        if (sucessfull == true) {
+                            result.add(cmds[1] + " dropped!");
+                        } else {
+                            result.add(cmds[1] + " is not in inventory");
+                        }
+                        if (finalRoomController() == true) {
+
+                        }
+                        break;
+                    case "timerexpired":
+                        world.setQuit(true);
+
+                        break;
+                    case "quit":
+                        world.setQuit(true);
+                        break;
+                    case "inventory":
+                        String backPackHtml = world.getInventoryHtml();
+                        List<String> inventory = player.getUserInventory();
+                        List<String> inventoryHtml = player.getUserInventoryHtml();
+                        String toOutPut = backPackHtml;
+                        int i = 0;
+                        for (String index : inventory) {
+
+                            toOutPut += " ";
+                            //Add item
+                            toOutPut += index;
+
+                            toOutPut += " ";
+                            //add it's html
+                            toOutPut += inventoryHtml.get(i);
+                            i++;
+                        }
+                        result.add(toOutPut);
+                        break;
+                    case "blank":
+                        result.add("I beg your pardon?");
+                        break;
+                    case "":
+                        break;
+                    default:
+                        result.add("<b>That's not a verb I recognise.</b>");
+                }
+            } catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBounds) {
+                result.add("Try again!");
             }
-        } catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBounds) {
-            result.add("Try again!");
-        }
 
+        }
         return result;
+
     }
 
     //MAPS AN ENTRANCE DIRECTION TO A ROOM
@@ -420,51 +414,50 @@ public class ZombieBot implements world.ZombieBot {
         //Zombies present but no weapon in inventory
         return status;
     }
+
     //Detects if the final room has been found
-    public boolean canQuitRoomFound(){
+    public boolean canQuitRoomFound() {
         boolean finalRoom = false;
         //check if room name is the same as the end room name
-        if(world.getCurrentRoom().equalsIgnoreCase(world.getEnd()))
-        {
+        if (world.getCurrentRoom().equalsIgnoreCase(world.getEnd())) {
             finalRoom = true;
         }
-        return finalRoom; 
+        return finalRoom;
     }
-    public boolean zombiesInTheRoom()
-    {
-      boolean zombieFound = true; 
-      if(roomList.get(findRoomIndex()).getZombieCount() == 0) //if the zombie count of the current room is 0 
-      {
-          zombieFound = false;
-      }
-      return zombieFound; 
-              
-    }
-    
-    public boolean itemsInTheRoom(){
-        
-        boolean itemsInRoom = true; 
-        List itemNamesInFinalRoom = roomList.get(findRoomIndex()).getItemName();
-        if (itemNamesInFinalRoom.isEmpty() == true) //if the list is empty 
+
+    public boolean zombiesInTheRoom() {
+        boolean zombieFound = true;
+        if (roomList.get(findRoomIndex()).getZombieCount() == 0) //if the zombie count of the current room is 0 
         {
+            zombieFound = false;
+        }
+        return zombieFound;
+
+    }
+
+    public boolean itemsInTheRoom() {
+
+        boolean itemsInRoom = true;
+        List itemNamesInFinalRoom = roomList.get(findRoomIndex()).getItemName();
+        if (itemNamesInFinalRoom.isEmpty()) //if the list is empty 
+        {
+            itemsInRoom = true;
+        } else {
             itemsInRoom = false;
         }
         return itemsInRoom;
     }
     //check if theres no zombies in the room
-    
+
     //false if can't quit true if can
-    public boolean finalRoomController()
-    {
+    public boolean finalRoomController() {
         boolean overall = false;
-        if(canQuitRoomFound() == true)
-        {
-            if ( (itemsInTheRoom() && zombiesInTheRoom()) == false)
-            {
+        if (canQuitRoomFound() == true) {
+            if ((itemsInTheRoom() && zombiesInTheRoom()) == false) {
                 overall = true;
             }
         }
         return overall;
     }
-    
+
 }
