@@ -154,7 +154,7 @@ public class ZombieBot implements world.ZombieBot {
                         // checks ending conditions 
                         if (finalRoomController() == true) {
 
-                            result.add("Congratulations your completed zombieBots");
+                            result.add("<b>Congratulations you've completed zombieBots</b>");
                             result.add("please press enter to quit");
                             finishQuit = true;
 
