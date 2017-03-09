@@ -18,7 +18,7 @@ public class ZombieBot implements world.ZombieBot {
     private List<Room> roomList;
     private List<String> roomName;
     private Player player;
-    private boolean finishQuit;
+
 
     ZombieBot(World world, List<Room> roomList, List<String> roomName, Player player) {
         this.world = world;
@@ -99,7 +99,7 @@ public class ZombieBot implements world.ZombieBot {
         ArrayList<String> result = new ArrayList<>();
 
         //checks if game is finished. Proceeds to switch if not. 
-        if (finishQuit == true) {
+        if (world.finishQuit == true) {
             world.setQuit(true);
         } else {
 
@@ -154,7 +154,7 @@ public class ZombieBot implements world.ZombieBot {
 
                             result.add("<b>Congratulations you've completed zombieBots</b>");
                             result.add("please press enter to quit");
-                            finishQuit = true;
+                            world.finishQuit = true;
 
                         }
 
