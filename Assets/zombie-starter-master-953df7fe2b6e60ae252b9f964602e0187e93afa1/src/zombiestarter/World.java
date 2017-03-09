@@ -18,12 +18,12 @@ public class World {
 
     private boolean quit = false;
     private boolean disableTimer;
-    private String info;
-    private String start; //start room
-    private String end; //end room
-    private String startHTML;
-    private List<WItem> items;
-    private String inventoryHtml;
+    final private String info;
+    final private String start; //start room
+    final private String end; //end room
+    final private String startHTML;
+    final private List<WItem> items;
+    final private String inventoryHtml;
     private String currentRoom; //This string will store the current room 
 
     //Contructor
@@ -100,6 +100,5 @@ public class World {
     public String getInventoryHtml() {
         return inventoryHtml;
     }
-    
 
 }

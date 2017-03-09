@@ -2,6 +2,7 @@ package zombiestarter;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author Dominic Lewis
@@ -138,7 +139,6 @@ public class ZombieBot implements world.ZombieBot {
                         } else {
                             result.add("No such room!");
                         }
-
 
                         break;
                     case "pickup":

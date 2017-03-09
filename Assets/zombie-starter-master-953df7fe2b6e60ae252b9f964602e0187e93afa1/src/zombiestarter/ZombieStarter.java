@@ -44,9 +44,9 @@ public class ZombieStarter {
             //Set the currentRoom 
             world.setCurrentRoom(world.getStart());
 
-            List<String> roomName = new ArrayList<String>(); //This will be used to store the roomNames 
+            List<String> roomName = new ArrayList<>(); //This will be used to store the roomNames 
             //It will be passed to world to use the indexes etc..
-            List<Room> roomList = new ArrayList<Room>();
+            List<Room> roomList = new ArrayList<>();
             //Load rooms instances up inside this array 
 
             //This loops over everything and does the magic and adds hopfully I wiill test in the morning 
