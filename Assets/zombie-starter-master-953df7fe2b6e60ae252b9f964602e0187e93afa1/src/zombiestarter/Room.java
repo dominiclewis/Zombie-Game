@@ -19,12 +19,12 @@ public class Room {
     private int zombieCount;
     private boolean timerRun = false;
 //Indexes should be shared
-    List<String> entranceDirection = new ArrayList<>();
-    List<String> leadsTo = new ArrayList<>();
-    List<Boolean> locked = new ArrayList<>();
+    private List<String> entranceDirection = new ArrayList<>();
+    private List<String> leadsTo = new ArrayList<>();
+    private List<Boolean> locked = new ArrayList<>();
 //Indexes should be shared/corresponding
-    List<String> itemName = new ArrayList<>();
-    List<String> itemHtml = new ArrayList<>();
+    private List<String> itemName = new ArrayList<>();
+    private List<String> itemHtml = new ArrayList<>();
 
     public Room(String roomName, String roomDescription, int zombieCount,
             List<String> entranceDirection, List<String> leadsTo, List<Boolean> locked,
