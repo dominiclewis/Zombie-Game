@@ -25,7 +25,7 @@ public class World {
     final private List<WItem> items;
     final private String inventoryHtml;
     private String currentRoom; //This string will store the current room 
-    public boolean finishQuit;
+    private boolean finishQuit;
 
     //Contructor
     World(String info, String start, String end, String startHTML, List<WItem> items, String inventoryHtml) {
@@ -37,7 +37,14 @@ public class World {
         this.inventoryHtml = inventoryHtml;
 
     }
-
+    public boolean getFinishQuit()
+    {
+        return finishQuit;
+    }
+    public void setFinishQuit(boolean finishQuit)
+    {
+        this.finishQuit = finishQuit;
+    }
     public boolean getDisableTimer() {
         return disableTimer;
     }

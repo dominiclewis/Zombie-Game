@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class ZombieBot implements world.ZombieBot {
 
-    public World world;
-    private List<Room> roomList;
-    private List<String> roomName;
-    private Player player;
+    private World world;
+    final private List<Room> roomList;
+    final private List<String> roomName;
+    final private Player player;
 
 
     ZombieBot(World world, List<Room> roomList, List<String> roomName, Player player) {
@@ -99,7 +99,7 @@ public class ZombieBot implements world.ZombieBot {
         ArrayList<String> result = new ArrayList<>();
 
         //checks if game is finished. Proceeds to switch if not. 
-        if (world.finishQuit == true) {
+        if (world.getFinishQuit() == true) {
             world.setQuit(true);
         } else {
 
@@ -154,7 +154,7 @@ public class ZombieBot implements world.ZombieBot {
 
                             result.add("<b>Congratulations you've completed zombieBots</b>");
                             result.add("please press enter to quit");
-                            world.finishQuit = true;
+                            world.setFinishQuit(true); 
 
                         }
 
@@ -239,7 +239,7 @@ public class ZombieBot implements world.ZombieBot {
 
     }
 
-    //MAPS AN ENTRANCE DIRECTION TO A ROOM
+    //MAPS  AN ENTRANCE DIRECTION TO A ROOM
     public List entranceToRoom(String direction) {
 
         int curRoomIndex = findRoomIndex();
